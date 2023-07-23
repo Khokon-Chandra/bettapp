@@ -1,0 +1,100 @@
+[17-Jul-2023 04:44:04 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:44:04 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:44:05 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:44:05 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:44:05 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:44:05 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:44:45 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:44:45 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:48:44 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:48:44 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:53:55 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:53:55 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:54:16 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:54:16 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:54:16 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:54:16 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:58:20 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:58:20 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 04:59:20 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 14:59:20 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[17-Jul-2023 05:05:03 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'u330613527_Nahid_supert20'@'localhost' (using password: YES) in /home/newtdjtx/public_html/lib/Database.php on line 25
+[17-Jul-2023 15:05:03 Asia/Dhaka] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/newtdjtx/public_html/lib/Database.php:36
+Stack trace:
+#0 /home/newtdjtx/public_html/lib/Database.php(36): mysqli->query()
+#1 /home/newtdjtx/public_html/header.php(12): Database->select()
+#2 /home/newtdjtx/public_html/header.php(86): fill_brand()
+#3 /home/newtdjtx/public_html/index.php(1): include('/home/newtdjtx/...')
+#4 {main}
+  thrown in /home/newtdjtx/public_html/lib/Database.php on line 36
+[18-Jul-2023 10:42:50 America/New_York] PHP Notice:  Undefined index: password in /home/newtdjtx/public_html/userLogin.php on line 6

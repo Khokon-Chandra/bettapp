@@ -1,0 +1,318 @@
+ @media (min-width: 1281px) {
+  
+ .home{
+     float:right;
+ }
+ .left{
+     width:auto;
+ }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+ .home{
+     float:right;
+ }
+ .left{
+     width:auto;
+ }
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+   .home{
+     float:right;
+ }
+ .left{
+     width:auto;
+ }
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  .home{
+     float:right;
+ }
+ .left{
+     width:auto;
+ }
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+.home{
+     float:left;
+ }
+ .left{
+     width:100%;
+ }
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .home{
+     float:left;
+ }
+ .left{
+     width:100%;
+ }
+  
+}
+
+li a .mrk{
+    background-color: yellow;
+    border-radius: 10px;
+}
+
+          .back-of-head-color{
+                background: #14805E !important;
+            }
+            .sing-color {
+                background: #14805E;
+                color: #ffffff !important;
+                border: 1px dotted #999999 !important;
+            }
+            .sing-color:hover{
+                background: #E95D51!important;
+
+            }
+
+            body{
+                background-color: #10323A;
+            }
+            .wrapper{
+                width:70%;
+            }
+            @media(max-width:992px){
+                .wrapper{
+                    width:100%;
+                } 
+            }
+
+            .content-wrap {
+                padding: 7px;
+
+            }
+
+
+
+
+            .nv li a{
+                color: #F9F9FA !important;
+            }
+            .nv li ul li a{
+                color: #00050A !important;
+            }
+
+            /*modal form*/
+            .form-control{
+                height: 40px;
+                box-shadow: none;
+                color: #969fa4;
+            }
+            .form-control:focus{
+                border-color: #5cb85c;
+            }
+            .form-control, .btn{        
+                border-radius: 3px;
+            }
+            .signup-form{
+
+                margin: 0 auto;
+
+            }
+
+
+            .signup-form form{
+                color: #999;
+                border-radius: 3px;
+
+
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+            .signup-form .form-group{
+                margin-bottom: 5px;
+            }
+            .signup-form input[type="checkbox"]{
+                margin-top: 3px;
+            }
+            .signup-form .btn{        
+                font-size: 16px;
+                font-weight: bold;		
+                min-width: 140px;
+                outline: none !important;
+            }
+            .signup-form .row div:first-child{
+                padding-right: 10px;
+            }
+            .signup-form .row div:last-child{
+                padding-left: 10px;
+            }    	
+
+            .marq {
+                border-left: 4px solid #CD4740;
+                background: #005a4c;
+                color: #B7B7B7;
+                font-size: 15px;
+                font-weight: bold;
+                padding: 10px;
+                border-right: 4px solid #20A564;
+                margin-bottom: -2px !important;
+                border-right: 4px solid #20A564;
+            }
+
+            /*error message*/
+            .load{
+                display: none;
+            }
+
+            .hideplace{
+                display: none;
+            }
+            .errorchangeClub{
+                display: none;
+            }
+            .errorChangePassword{
+                display: none;
+            }
+            .error{
+                display: none;
+            }
+            .errorSignIn{
+                display: none;
+            }
+            .errorPlaceBet{
+                display: none;
+            }
+            .errorDeposit{
+                display: none;
+            }
+            .errorWithraw{
+                display: none;
+            }
+            .errorPassword{
+                display: none;
+            }
+
+            .errorBalanceTransfer{
+                display: none;
+            }
+
+            .heading-color {
+                background: #14805E;
+                border-radius: 0px;
+                border: 0px;
+                border-bottom: 1px solid #939393;
+            }
+            .nv li a{
+                color: #ffffff!important;
+            }
+
+            .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+                color: #333;
+                background-color: transparent;
+                border-bottom: 2px solid #FECE44;
+            }
+            .callaction{
+                margin-top: -19px;
+            }
+            //hidden
+
+
+
+
+            // #content-desktop {display: none;}
+            // #content-mobile {display: block;}
+
+            @media screen and (min-width: 768px) {
+
+                // #content-desktop {display: block;}
+                #content-mobile {display: none;}
+
+            }
+.buttonrate {
+	border: 3px solid #494949;
+    background: #1B5562;
+    color: #fff ;
+	border-bottom: 2px solid #494949; 
+    border-right: 2px solid #494949;
+    padding: 5px;
+}
+
+    .dateshow {
+    text-align: center;
+    padding: 4px 0px;
+    color: #C4C4C4;
+    background:#022644;
+    border-left: 2px solid #D8AB7D;
+    border-right: 2px solid #D8AB7D;
+    font-size: 15px;
+    border-bottom: 1px solid #9E7143;
+    border-left: 2px solid #D8AB7D;
+    border-right: 2px solid #D8AB7D;
+    font-size: 15px;
+    border-bottom: 1px solid #9E7143;
+    margin-top: -3px;
+    margin-bottom: 4px;
+    font-style: arial;
+    font-weight: bold;
+}
+
+.liv{
+    color: #E2DD50;
+    font-weight: bolder;
+    font-size: 17px;
+	font-family: verdana;
+}
+div .im{
+    min-width: 43px !important;
+    height: 43px !important;
+}
+.scor{
+    background-color: #003C3D !important;
+}
+
+.placebetbutton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 10.6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+	border-radius: 12px;
+}
