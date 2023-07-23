@@ -1,0 +1,23 @@
+{
+    "name": "riazul/riaz",
+    "description": "Betting Website for intertainment project practice purpose",
+    "type": "project",
+    "require": {
+        "illuminate/collections": "10.x-dev",
+        "illuminate/database": "10.x-dev",
+        "illuminate/events": "10.x-dev"
+    },
+    "license": "NRC",
+    "autoload": {
+        "psr-4": {
+            "Riazul\\Riaz\\": "src/"
+        },
+        "files": ["src/Connection.php"]
+    },
+    "authors": [
+        {
+            "name": "riazul"
+        }
+    ],
+    "minimum-stability": "dev"
+}
