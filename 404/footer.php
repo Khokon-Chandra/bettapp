@@ -14,13 +14,15 @@
 <!-- Data table plugin-->
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Google analytics script-->
 <script>
     function fetchChat() {
         $.ajax({
             url: "fetchNotification.php",
-             dataType: 'json',
-            success: function (data) {
+            dataType: 'json',
+            success: function(data) {
 
                 $("#count").html(data.count);
                 $("#notificationList").html(data.list);
@@ -28,17 +30,17 @@
         });
     }
     fetchChat();
-    setInterval(function () {
+    setInterval(function() {
         fetchChat();
-    
+
     }, 30000);
-    
- //fetch chat   
-        function Chat() {
+
+    //fetch chat   
+    function Chat() {
         $.ajax({
             url: "fetchChat.php",
-           dataType: 'json',
-            success: function (data) {
+            dataType: 'json',
+            success: function(data) {
 
                 $("#countChat").html(data.countChat);
                 $("#chatNotificationList").html(data.list);
@@ -46,16 +48,16 @@
         });
     }
     Chat();
-    setInterval(function () {
+    setInterval(function() {
         Chat();
-    
+
     }, 30000);
-     //fetch chat  club 
-        function ChatClub() {
+    //fetch chat  club 
+    function ChatClub() {
         $.ajax({
             url: "fetchChatOfClub.php",
-           dataType: 'json',
-            success: function (data) {
+            dataType: 'json',
+            success: function(data) {
 
                 $("#countChatofClub").html(data.countChat);
                 $("#chatNotificationListOfClub").html(data.list);
@@ -65,11 +67,11 @@
 
 
     ChatClub();
-    setInterval(function () {
+    setInterval(function() {
         ChatClub();
-    
+
     }, 30000);
-    
 </script>
 </body>
+
 </html>
