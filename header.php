@@ -1,5 +1,12 @@
 <?php
+
+use Riazul\Riaz\DB;
+
+require_once './vendor/autoload.php';
+
 include './lib/Database.php';
+
+
 $db = new Database();
 date_default_timezone_set('Asia/Dhaka');
 ?>
