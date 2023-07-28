@@ -1,4 +1,5 @@
 <?php
+include "../autoload.php";
 session_start();
 if (!isset($_SESSION['adminId']) || (trim($_SESSION['adminId']) == '')) {
     if (!isset($_COOKIE["adminPanel"]) AND ( !isset($_COOKIE["adminPass"]))) {

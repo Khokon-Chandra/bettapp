@@ -2,8 +2,7 @@
 <?php include './side.php'; ?>
 
 <style>
-
-    #accordion .panel{
+    #accordion .panel {
         border: none;
         border-radius: 0;
         box-shadow: none;
@@ -12,13 +11,15 @@
         position: relative;
         margin-bottom: -7px !important;
     }
-    #accordion .panel-heading{
+
+    #accordion .panel-heading {
         padding: 0;
         border: none;
         border-radius: 0;
         position: relative;
     }
-    #accordion .panel-title a{
+
+    #accordion .panel-title a {
         display: block;
         padding: 8px 22px;
         margin: 0;
@@ -34,7 +35,7 @@
 
 
 
-    #accordion .panel-body{
+    #accordion .panel-body {
         border: 3px solid #145C51;
         border-top: none;
         background: #fff;
@@ -44,7 +45,8 @@
         position: relative;
         margin-top: -8px !important;
     }
-    #accordion .panel-body-2{
+
+    #accordion .panel-body-2 {
 
         border-top: none;
         background: #fff;
@@ -55,11 +57,11 @@
         margin-top: -8px !important;
     }
 
-    #accordion .panel-body p{
+    #accordion .panel-body p {
         padding: 10px;
     }
-    //modal resize
 
+    //modal resize
 </style>
 
 <main class="app-content">
@@ -87,13 +89,11 @@
 
 
                 $query = "INSERT INTO `default_match`(`A_team`, `B_team`, `title`, `date`, `status`, `gameType`)"
-                        . " VALUES ('$A_team','$B_team','$title','$date','$status','$gameType')";
+                    . " VALUES ('$A_team','$B_team','$title','$date','$status','$gameType')";
                 $resultClubInsert = $db->insert($query);
 
                 if ($resultClubInsert) {
-                    
                 } else {
-                    
                 }
             }
             ?>
@@ -102,20 +102,18 @@
                 $input_field = $_POST['input_field'];
                 $bettingId = $_POST['bettingId'];
                 $category = $_POST['category'];
-                     $gType = $_POST['gType'];
+                $gType = $_POST['gType'];
 
 
                 foreach ($input_field as $title) {
 
 
                     $query = "INSERT INTO `default_ques`( `title`, `bettingId`,section_ct,g_type)"
-                            . " VALUES ('$title','$bettingId','$category','$gType')";
+                        . " VALUES ('$title','$bettingId','$category','$gType')";
                     $resultClubInsert = $db->insert($query);
 
                     if ($resultClubInsert) {
-                        
                     } else {
-                        
                     }
                 }
             }
@@ -133,13 +131,11 @@
 
 
                     $query = "INSERT INTO `default_ans`(`title`, `amount`, `bettingSubTitleId`)"
-                            . " VALUES ('$title','$rate','$subBettingId')";
+                        . " VALUES ('$title','$rate','$subBettingId')";
                     $resultClubInsert = $db->insert($query);
 
                     if ($resultClubInsert) {
-                        
                     } else {
-                        
                     }
                 }
             }
@@ -224,9 +220,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
-                    <a class="btn btn-primary icon-btn" href="" data-toggle="modal" data-target="#add-bet"><i class="fa fa-plus"></i>Add Item	</a>
-                    <a class="btn btn-success" href="" ><i class="fa fa-refresh"></i>Refresh</a><br><br>
+                    </div> <!-- end Modal -->
+                    <a class="btn btn-primary icon-btn" href="" data-toggle="modal" data-target="#add-bet"><i class="fa fa-plus"></i>Add Item </a>
+                    <a class="btn btn-success" href=""><i class="fa fa-refresh"></i>Refresh</a><br><br>
                     <h6 style="color: #DD5347">Live Match</h6>
                     <?php
                     $query = "SELECT * FROM `default_match` ORDER BY id desc";
@@ -236,7 +232,7 @@
                         while ($bettingTitle = $resultBettingTitle->fetch_assoc()) {
 
                             $i++;
-                            ?>
+                    ?>
                             <!-- Modal -->
 
                             <!-- Modal -->
@@ -264,7 +260,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>  <!-- end Modal -->
+                            </div> <!-- end Modal -->
 
 
 
@@ -296,10 +292,10 @@
                                                             while ($receivingMoneyNumber = $resultreceivingMoneyNumber->fetch_assoc()) {
 
                                                                 $i++;
-                                                                ?>
-                                                                <option value=" <?php echo $receivingMoneyNumber['id']; ?>">      <?php echo $receivingMoneyNumber['title']; ?></option>
+                                                        ?>
+                                                                <option value=" <?php echo $receivingMoneyNumber['id']; ?>"> <?php echo $receivingMoneyNumber['title']; ?></option>
 
-                                                                <?php
+                                                        <?php
                                                             }
                                                         }
                                                         ?>
@@ -324,9 +320,9 @@
                                                     <div class="form-group row">
 
                                                         <div class="col-md-6">
-                                                            <input class="form-control" name="input_field[]"  placeholder="Enter Question">
+                                                            <input class="form-control" name="input_field[]" placeholder="Enter Question">
 
-                                                            <a href="javascript:void(0);" class="add_input_button-sub" title="Add field"><i style="background: green;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-plus" ></i></a>
+                                                            <a href="javascript:void(0);" class="add_input_button-sub" title="Add field"><i style="background: green;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-plus"></i></a>
                                                         </div>
 
                                                     </div>
@@ -335,7 +331,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label col-md-3"></label>
                                                     <div class="col-md-8">
-                                                        <input name="bettingId" type="text"  value="<?php echo $bettingTitle['id'] ?>" hidden="1">
+                                                        <input name="bettingId" type="text" value="<?php echo $bettingTitle['id'] ?>" hidden="1">
                                                     </div>
                                                 </div>
 
@@ -356,7 +352,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>  <!-- end Modal -->
+                            </div> <!-- end Modal -->
 
 
                             <!-- Modal update match-->
@@ -414,7 +410,7 @@
                                                         <div class="">
                                                             <label>
                                                                 <input type="radio" name="gameType" id="gameType" value="1"><span class="label-text"> FootBall</span><br>
-                                                                <input  type="radio" name="gameType" id="gameType" value="2"><span class="label-text"> Cricket</span>
+                                                                <input type="radio" name="gameType" id="gameType" value="2"><span class="label-text"> Cricket</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -435,7 +431,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>  <!-- end Modal -->
+                            </div> <!-- end Modal -->
                             <!-- first label -->
 
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -447,59 +443,59 @@
 
                                                 <?php
                                                 if ($bettingTitle['gameType'] == 1) {
-                                                    ?>
-                                                    <img src="../img/1393757333.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo $bettingTitle['date'] ?> 
+                                                ?>
+                                                    <img src="../img/1393757333.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo $bettingTitle['date'] ?>
 
 
-                                                    <button class="btn btn-primary  btn-sm" href="" data-toggle="modal" data-target="#action-sub-betting-id<?php echo $bettingTitle['id'] ?>">action </button>
+                                                        <button class="btn btn-primary  btn-sm" href="" data-toggle="modal" data-target="#action-sub-betting-id<?php echo $bettingTitle['id'] ?>">action </button>
 
 
-                                                    <?php
-                                                    if ($bettingTitle['ariaHide'] == 1) {
-                                                        ?>
-                                                        <form  method="post"action="defaultPanelAction.php" style="display: inline">
-                                                            <input type="text" name="bettingTitleId"   value="<?php echo $bettingTitle['id'] ?>" hidden>
-                                                            <input type="submit" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm"  value="aria hide">
-                                                        </form>
                                                         <?php
-                                                    } else {
+                                                        if ($bettingTitle['ariaHide'] == 1) {
                                                         ?>
-                                                        <form method="post"action="defaultPanelAction.php" style="display: inline">
-                                                            <input type="text" name="bettingTitleId"  value="<?php echo $bettingTitle['id'] ?>" hidden>
-                                                            <input type="submit" name="bettingTitleAriaShow" class="btn btn-danger  btn-sm"  value="aria show">
-                                                        </form>
+                                                            <form method="post" action="defaultPanelAction.php" style="display: inline">
+                                                                <input type="text" name="bettingTitleId" value="<?php echo $bettingTitle['id'] ?>" hidden>
+                                                                <input type="submit" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm" value="aria hide">
+                                                            </form>
                                                         <?php
-                                                    }
-                                                    ?>
+                                                        } else {
+                                                        ?>
+                                                            <form method="post" action="defaultPanelAction.php" style="display: inline">
+                                                                <input type="text" name="bettingTitleId" value="<?php echo $bettingTitle['id'] ?>" hidden>
+                                                                <input type="submit" name="bettingTitleAriaShow" class="btn btn-danger  btn-sm" value="aria show">
+                                                            </form>
+                                                        <?php
+                                                        }
+                                                        ?>
 
 
                                                     <?php
                                                 } else {
                                                     ?>
-                                                    <img src="../img/ka-pl.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo $bettingTitle['date'] ?> 
+                                                        <img src="../img/ka-pl.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo $bettingTitle['date'] ?>
 
-                                                    <button class="btn btn-primary  btn-sm" href="" data-toggle="modal" data-target="#action-sub-betting-id<?php echo $bettingTitle['id'] ?>">action </button>
+                                                            <button class="btn btn-primary  btn-sm" href="" data-toggle="modal" data-target="#action-sub-betting-id<?php echo $bettingTitle['id'] ?>">action </button>
 
-                                                    <?php
-                                                    if ($bettingTitle['ariaHide'] == 1) {
-                                                        ?>
-                                                        <form  method="post"action="defaultPanelAction" style="display: inline">
-                                                            <input type="text" name="bettingTitleId"   value="<?php echo $bettingTitle['id'] ?>" hidden>
-                                                            <input type="submit" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm"  value="aria hide">
-                                                        </form>
-                                                        <?php
-                                                    } else {
-                                                        ?>
-                                                        <form method="post"action="defaultPanelAction" style="display: inline">
-                                                            <input type="text" name="bettingTitleId"  value="<?php echo $bettingTitle['id'] ?>" hidden>
-                                                            <input type="submit" name="bettingTitleAriaShow" class="btn btn-danger  btn-sm"  value="aria show">
-                                                        </form>
+                                                            <?php
+                                                            if ($bettingTitle['ariaHide'] == 1) {
+                                                            ?>
+                                                                <form method="post" action="defaultPanelAction" style="display: inline">
+                                                                    <input type="text" name="bettingTitleId" value="<?php echo $bettingTitle['id'] ?>" hidden>
+                                                                    <input type="submit" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm" value="aria hide">
+                                                                </form>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <form method="post" action="defaultPanelAction" style="display: inline">
+                                                                    <input type="text" name="bettingTitleId" value="<?php echo $bettingTitle['id'] ?>" hidden>
+                                                                    <input type="submit" name="bettingTitleAriaShow" class="btn btn-danger  btn-sm" value="aria show">
+                                                                </form>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         <?php
                                                     }
-                                                    ?>
-                                                    <?php
-                                                }
-                                                ?>
+                                                        ?>
 
 
 
@@ -509,7 +505,7 @@
                                     </div>
                                     <?php
                                     if ($bettingTitle['ariaHide'] == 1) {
-                                        ?>
+                                    ?>
                                         <div id="collapseOne<?php echo $bettingTitle['id'] ?>one" class="panel-collapse " role="tabpanel" aria-labelledby="headingOne<?php echo $bettingTitle['id'] ?>one">
                                             <div class="panel-body" style="">
 
@@ -523,10 +519,10 @@
                                                         while ($bettingSubTitle = $resultBettingSubTitle->fetch_assoc()) {
 
                                                             $i++;
-                                                            ?>
+                                                    ?>
                                                             <!-- add-sub-betting-option Modal -->
                                                             <div id="add-sub-betting-option-id<?php echo $bettingSubTitle['id'] ?>" class="modal" style="">
-                                                                <div class="modal-dialog "  role="document">
+                                                                <div class="modal-dialog " role="document">
                                                                     <div class="modal-content">
 
                                                                         <div class="modal-header">
@@ -543,20 +539,20 @@
                                                                                     <div class="form-group row">
 
                                                                                         <div class="col-md-6">
-                                                                                            <input class="form-control" name="input_field[]"  placeholder="Enter Ans">
+                                                                                            <input class="form-control" name="input_field[]" placeholder="Enter Ans">
 
-                                                                                            <a href="javascript:void(0);" class="add_input_button" title="Add field"><i style="background: green;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-plus" ></i></a>
+                                                                                            <a href="javascript:void(0);" class="add_input_button" title="Add field"><i style="background: green;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-plus"></i></a>
 
                                                                                         </div>
                                                                                         <div class="col-md-4">
-                                                                                            <input class="form-control" name="betRate[]"  placeholder="Bet Rate">
+                                                                                            <input class="form-control" name="betRate[]" placeholder="Bet Rate">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group row">
                                                                                     <label class="control-label col-md-3"></label>
                                                                                     <div class="col-md-8">
-                                                                                        <input name="subBettingId" type="text"  value="<?php echo $bettingSubTitle['id'] ?>" hidden="1">
+                                                                                        <input name="subBettingId" type="text" value="<?php echo $bettingSubTitle['id'] ?>" hidden="1">
                                                                                     </div>
                                                                                 </div>
 
@@ -576,10 +572,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>  <!-- end Modal -->
+                                                            </div> <!-- end Modal -->
                                                             <!-- update-sub-betting Modal -->
                                                             <div id="update-sub-betting-option-id<?php echo $bettingSubTitle['id'] ?>" class="modal" style="">
-                                                                <div class="modal-dialog "  role="document">
+                                                                <div class="modal-dialog " role="document">
                                                                     <div class="modal-content">
 
                                                                         <div class="modal-header">
@@ -596,7 +592,7 @@
                                                                                 <div class="form-group row">
                                                                                     <label class="control-label col-md-3">Question</label>
                                                                                     <div class="col-md-8">
-                                                                                        <input class="form-control" name="editQuestion"  value="<?php echo $bettingSubTitle['title'] ?>">
+                                                                                        <input class="form-control" name="editQuestion" value="<?php echo $bettingSubTitle['title'] ?>">
 
                                                                                     </div>
                                                                                 </div>
@@ -604,7 +600,7 @@
                                                                                 <div class="form-group row">
                                                                                     <label class="control-label col-md-3"></label>
                                                                                     <div class="col-md-8">
-                                                                                        <input name="editQuestionId" type="text"  value="<?php echo $bettingSubTitle['id'] ?>" hidden="1">
+                                                                                        <input name="editQuestionId" type="text" value="<?php echo $bettingSubTitle['id'] ?>" hidden="1">
                                                                                     </div>
                                                                                 </div>
 
@@ -624,11 +620,11 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>  <!-- end Modal -->                                                       
+                                                            </div> <!-- end Modal -->
 
                                                             <!-- action-sub-betting-option Modal -->
                                                             <div id="action-sub-betting-option-id<?php echo $bettingSubTitle['id'] ?>" class="modal" style="">
-                                                                <div class="modal-dialog modal-sm modal-open"  role="document">
+                                                                <div class="modal-dialog modal-sm modal-open" role="document">
                                                                     <div class="modal-content">
 
                                                                         <div class="modal-body">
@@ -648,14 +644,14 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>  <!-- end Modal -->
+                                                            </div> <!-- end Modal -->
 
 
                                                             <div class="panel panel-default">
                                                                 <div class="panel-heading" role="tab" id="headingOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
                                                                     <h4 class="panel-title">
-                                                                        <a  style="background:#E7E7E7 !important;color: #212529;padding: 1%;border-bottom: 1px solid #979797;" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $bettingTitle['id'] ?>one" href="#collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
-                                                                            <?php echo $bettingSubTitle['title'] ?> 
+                                                                        <a style="background:#E7E7E7 !important;color: #212529;padding: 1%;border-bottom: 1px solid #979797;" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $bettingTitle['id'] ?>one" href="#collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
+                                                                            <?php echo $bettingSubTitle['title'] ?>
 
                                                                             <?php
                                                                             $query = "SELECT * FROM section where id='$bettingSubTitle[section_ct]'";
@@ -663,10 +659,10 @@
                                                                             $i = 0;
                                                                             if ($resultreceivingMoneyNumber) {
                                                                                 $receivingMoneyNumber = $resultreceivingMoneyNumber->fetch_assoc();
-                                                                                ?>
-                                                                                (  <?php echo $receivingMoneyNumber['title']; ?> )
+                                                                            ?>
+                                                                                ( <?php echo $receivingMoneyNumber['title']; ?> )
 
-                                                                                <?php
+                                                                            <?php
                                                                             }
                                                                             ?>
 
@@ -675,19 +671,19 @@
 
                                                                             <?php
                                                                             if ($bettingSubTitle['ariaHide'] == 1) {
-                                                                                ?>
-                                                                                <form  method="post"action="defaultPanelAction.php" style="display: inline">
-                                                                                    <input type="text" name="bettingSubTitleId"   value="<?php echo $bettingSubTitle['id'] ?>" hidden>
+                                                                            ?>
+                                                                                <form method="post" action="defaultPanelAction.php" style="display: inline">
+                                                                                    <input type="text" name="bettingSubTitleId" value="<?php echo $bettingSubTitle['id'] ?>" hidden>
                                                                                     <input type="submit" name="bettingSubTitleAriaHide" class="btn btn-primary  btn-sm" href="defaultPanelAction" value="aria hide">
                                                                                 </form>
-                                                                                <?php
+                                                                            <?php
                                                                             } else {
-                                                                                ?>
-                                                                                <form method="post"action="defaultPanelAction.php" style="display: inline">
-                                                                                    <input type="text" name="bettingSubTitleId"  value="<?php echo $bettingSubTitle['id'] ?>" hidden>
+                                                                            ?>
+                                                                                <form method="post" action="defaultPanelAction.php" style="display: inline">
+                                                                                    <input type="text" name="bettingSubTitleId" value="<?php echo $bettingSubTitle['id'] ?>" hidden>
                                                                                     <input type="submit" name="bettingSubTitleAriaShow" class="btn btn-danger  btn-sm" href="defaultPanelAction" value="aria show">
                                                                                 </form>
-                                                                                <?php
+                                                                            <?php
                                                                             }
                                                                             ?>
 
@@ -699,7 +695,7 @@
                                                                 </div>
                                                                 <?php
                                                                 if ($bettingSubTitle['ariaHide'] == 1) {
-                                                                    ?>
+                                                                ?>
 
                                                                     <div id="collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>" class="panel-collapse " role="tabpanel" aria-labelledby="headingOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
                                                                         <div class="panel-body-2" style="padding: 10px;margin-bottom: 5px;">
@@ -732,7 +728,7 @@
                                                                                                         while ($BettingSubTitleOption = $resultBettingSubTitleOption->fetch_assoc()) {
 
                                                                                                             $i++;
-                                                                                                            ?>
+                                                                                                    ?>
                                                                                                             <tr>
                                                                                                                 <th> <?php echo $BettingSubTitleOption['title'] ?> </th>
                                                                                                                 <td> <a href="" class="btn btn-primary" data-toggle="modal" data-target="#edit-betting-rate<?php echo $BettingSubTitleOption['id'] ?>"> <?php echo $BettingSubTitleOption['amount'] ?></a> </td>
@@ -751,129 +747,129 @@
                                                                                                                         <a class="dropdown-item" onclick="return confirm('Are you sure?')" href="defaultPanelAction?deleteAnswer=<?php echo $BettingSubTitleOption['id'] ?>">Delete</a>
 
                                                                                                                     </div>
-                                                                                                                    </div>
+                                                                                        </div>
 
-                                                                                                                    <!-- edit betting rate -->
-                                                                                                                    <div id="edit-betting-rate<?php echo $BettingSubTitleOption['id'] ?>" class="modal editRate" style="">
-                                                                                                                        <div class="modal-dialog modal-sm" role="document">
-                                                                                                                            <div class="modal-content">
-                                                                                                                                <div class="modal-header">
-
-
-                                                                                                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                                                                                                </div>
-                                                                                                                                <div class="modal-body">
-                                                                                                                                    <h6> <?php echo $bettingSubTitle['title'] ?> </h6>
-                                                                                                                                    <form class="form-horizontal" action="defaultPanelAction.php" method="post">
+                                                                                        <!-- edit betting rate -->
+                                                                                        <div id="edit-betting-rate<?php echo $BettingSubTitleOption['id'] ?>" class="modal editRate" style="">
+                                                                                            <div class="modal-dialog modal-sm" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
 
 
-                                                                                                                                        <div class="form-group row">
-
-                                                                                                                                            <div class="col-md-8">
-                                                                                                                                                <input class="form-control" name="editAnswer"  value="<?php echo $BettingSubTitleOption['title'] ?>">
-
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-                                                                                                                                        <div class="form-group row">
-
-                                                                                                                                            <div class="col-md-8">
-                                                                                                                                                <input class="form-control rate" name="editRateAmount" >
-
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-
-                                                                                                                                        <div class="form-group row">
-                                                                                                                                            <label class="control-label col-md-3"></label>
-                                                                                                                                            <div class="col-md-8">
-                                                                                                                                                <input name="BettingSubTitleOptionId" type="text"  value="<?php echo $BettingSubTitleOption['id'] ?>" hidden="1">
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-
-                                                                                                                                        <div class="form-group row">
-                                                                                                                                            <label class="control-label col-md-3"></label>
-                                                                                                                                            <div class="col-md-8">
-                                                                                                                                                <input name="editBetRate" type="submit" class="btn btn-success" value="submit">
-                                                                                                                                            </div>
-                                                                                                                                        </div>
+                                                                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <h6> <?php echo $bettingSubTitle['title'] ?> </h6>
+                                                                                                        <form class="form-horizontal" action="defaultPanelAction.php" method="post">
 
 
-                                                                                                                                    </form>
-                                                                                                                                </div>
+                                                                                                            <div class="form-group row">
 
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>  <!-- end Modal -->
+                                                                                                                <div class="col-md-8">
+                                                                                                                    <input class="form-control" name="editAnswer" value="<?php echo $BettingSubTitleOption['title'] ?>">
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="form-group row">
+
+                                                                                                                <div class="col-md-8">
+                                                                                                                    <input class="form-control rate" name="editRateAmount">
+
+                                                                                                                </div>
+                                                                                                            </div>
+
+                                                                                                            <div class="form-group row">
+                                                                                                                <label class="control-label col-md-3"></label>
+                                                                                                                <div class="col-md-8">
+                                                                                                                    <input name="BettingSubTitleOptionId" type="text" value="<?php echo $BettingSubTitleOption['id'] ?>" hidden="1">
+                                                                                                                </div>
+                                                                                                            </div>
+
+                                                                                                            <div class="form-group row">
+                                                                                                                <label class="control-label col-md-3"></label>
+                                                                                                                <div class="col-md-8">
+                                                                                                                    <input name="editBetRate" type="submit" class="btn btn-success" value="submit">
+                                                                                                                </div>
+                                                                                                            </div>
 
 
-                                                                                                                </td>
+                                                                                                        </form>
+                                                                                                    </div>
 
-                                                                                                            </tr>
-                                                                                                            <?php
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div> <!-- end Modal -->
+
+
+                                                                                        </td>
+
+                                                                                        </tr>
+                                                                                <?php
                                                                                                         }
                                                                                                     }
-                                                                                                    ?>
+                                                                                ?>
 
 
-                                                                                                    <tr>
+                                                                                <tr>
 
 
-                                                                                                        <th style="border: 0px;"></th>
-                                                                                                        <th style="border: 0px;"></th>
+                                                                                    <th style="border: 0px;"></th>
+                                                                                    <th style="border: 0px;"></th>
 
-                                                                                                        <th style="border: 0px;"></th>
-                                                                                                    </tr>
+                                                                                    <th style="border: 0px;"></th>
+                                                                                </tr>
 
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </div>
+                                                                                </tbody>
+                                                                                </table>
                                                                                     </div>
                                                                                 </div>
-
-
-
-
-
-
                                                                             </div>
 
+
+
+
+
+
                                                                         </div>
+
                                                                     </div>
-                                                                    <?php
-                                                                }
-                                                                ?>
                                                             </div>
-                                                            <?php
+                                                        <?php
+                                                                }
+                                                        ?>
+                                                </div>
+                                        <?php
                                                         }
                                                     }
-                                                    ?>
+                                        ?>
 
 
-
-                                                </div>
 
                                             </div>
+
                                         </div>
-                                        <?php
-                                    }
-                                    ?>
                                 </div>
-                            </div>
                             <?php
+                                    }
+                            ?>
+                            </div>
+                </div>
+            <?php
                         }
                     } else {
-                        ?>
-                        <div class="alert alert-dismissible alert-danger">
-                            <button class="close" type="button" data-dismiss="alert">×</button><strong>Match not Found !!!</strong>
-                        </div>
-                        <?php
+            ?>
+            <div class="alert alert-dismissible alert-danger">
+                <button class="close" type="button" data-dismiss="alert">×</button><strong>Match not Found !!!</strong>
+            </div>
+        <?php
                     }
-                    ?>
+        ?>
 
 
 
-                </div>
             </div>
         </div>
+    </div>
     </div>
 </main>
 <?php include './footer.php'; ?>
@@ -883,7 +879,7 @@
 <!-- Page specific javascripts-->
 
 
-<!-- won-->  
+<!-- won-->
 <!-- The javascript plugin to display page loading on top-->
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
@@ -892,57 +888,57 @@
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
 
 <script>
-                                                                                            $(document).ready(function () {
-                                                                                                var max_fields = 10;
-                                                                                                var add_input_button = $('.add_input_button');
-                                                                                                var field_wrapper = $('.field_wrapper');
-                                                                                                var new_field_html = '<div class="form-group row"> <div class="col-md-6"><input class="form-control" name="input_field[]"  placeholder="Enter Ans"> <a href="javascript:void(0);" class="remove_input_button" title="Remove field"> <i style="background: red;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-minus" ></i></a></div><div class="col-md-4"><input class="form-control" name="betRate[]"  placeholder="Bet Rate"></div></div>';
-                                                                                                var input_count = 1;
-// Add button dynamically
-                                                                                                $(add_input_button).click(function () {
-                                                                                                    if (input_count < max_fields) {
-                                                                                                        input_count++;
-                                                                                                        $(field_wrapper).append(new_field_html);
-                                                                                                    }
-                                                                                                });
-// Remove dynamically added button
-                                                                                                $(field_wrapper).on('click', '.remove_input_button', function (e) {
-                                                                                                    e.preventDefault();
-                                                                                                    $(this).parent('div').remove();
-                                                                                                    input_count--;
-                                                                                                });
-                                                                                                //
-                                                                                                var max_fields_sub = 10;
-                                                                                                var add_input_button_sub = $('.add_input_button-sub');
-                                                                                                var field_wrapper_sub = $('.field_wrapper-sub');
-                                                                                                var new_field_html_sub = '<div class="form-group row"> <div class="col-md-6"><input class="form-control" name="input_field[]"  placeholder="Enter Bet Statement"> <a href="javascript:void(0);" class="remove_input_button-sub" title="Remove field"> <i style="background: red;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-minus" ></i></a></div></div>';
-                                                                                                var input_count_sub = 1;
-// Add button dynamically
-                                                                                                $(add_input_button_sub).click(function () {
-                                                                                                    if (input_count_sub < max_fields_sub) {
-                                                                                                        input_count_sub++;
-                                                                                                        $(field_wrapper_sub).append(new_field_html_sub);
-                                                                                                    }
-                                                                                                });
-// Remove dynamically added button
-                                                                                                $(field_wrapper_sub).on('click', '.remove_input_button-sub', function (e) {
-                                                                                                    e.preventDefault();
-                                                                                                    $(this).parent('div').remove();
-                                                                                                    input_count_sub--;
-                                                                                                });
-                                                                                            });
+    $(document).ready(function() {
+        var max_fields = 10;
+        var add_input_button = $('.add_input_button');
+        var field_wrapper = $('.field_wrapper');
+        var new_field_html = '<div class="form-group row"> <div class="col-md-6"><input class="form-control" name="input_field[]"  placeholder="Enter Ans"> <a href="javascript:void(0);" class="remove_input_button" title="Remove field"> <i style="background: red;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-minus" ></i></a></div><div class="col-md-4"><input class="form-control" name="betRate[]"  placeholder="Bet Rate"></div></div>';
+        var input_count = 1;
+        // Add button dynamically
+        $(add_input_button).click(function() {
+            if (input_count < max_fields) {
+                input_count++;
+                $(field_wrapper).append(new_field_html);
+            }
+        });
+        // Remove dynamically added button
+        $(field_wrapper).on('click', '.remove_input_button', function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            input_count--;
+        });
+        //
+        var max_fields_sub = 10;
+        var add_input_button_sub = $('.add_input_button-sub');
+        var field_wrapper_sub = $('.field_wrapper-sub');
+        var new_field_html_sub = '<div class="form-group row"> <div class="col-md-6"><input class="form-control" name="input_field[]"  placeholder="Enter Bet Statement"> <a href="javascript:void(0);" class="remove_input_button-sub" title="Remove field"> <i style="background: red;color: white;padding: 9px;border-radius: 43%;margin-top: 6px;" class="fa fa-minus" ></i></a></div></div>';
+        var input_count_sub = 1;
+        // Add button dynamically
+        $(add_input_button_sub).click(function() {
+            if (input_count_sub < max_fields_sub) {
+                input_count_sub++;
+                $(field_wrapper_sub).append(new_field_html_sub);
+            }
+        });
+        // Remove dynamically added button
+        $(field_wrapper_sub).on('click', '.remove_input_button-sub', function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            input_count_sub--;
+        });
+    });
 
 
-                                                                                            $('.editRate').on('shown.bs.modal', function () {
-                                                                                                $(this).find('.rate').focus();
-                                                                                            });
+    $('.editRate').on('shown.bs.modal', function() {
+        $(this).find('.rate').focus();
+    });
 
-                                                                                            $(document).on('click', '.gameTypec', function () {
+    $(document).on('click', '.gameTypec', function() {
 
-                                                                                                $('.hiddenOp').toggle();
+        $('.hiddenOp').toggle();
 
 
-                                                                                            });
+    });
 </script>
 
 

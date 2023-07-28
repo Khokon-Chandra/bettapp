@@ -1,12 +1,19 @@
 <?php
+
 include './header.php';
+
 include './side.php';
+
 include 'db.php';
+
+
 if (isset($_COOKIE['adminType'])) {
     $adminType = $_COOKIE['adminType'];
 } else {
     $adminType = $_SESSION['adminType'];
 }
+
+
 ?>
 
 <?php
@@ -34,17 +41,17 @@ if (isset($_COOKIE['adminPanel'])) {
                 }
                 ?>
                 <?php
-                $q="select sum(amount)as totalsend from deposit_and_withdraw_his where d_or_w=2";
-                $run=$db->select($q);
-                $total_sending=$run->fetch_assoc();
+                $q = "select sum(amount)as totalsend from deposit_and_withdraw_his where d_or_w=2";
+                $run = $db->select($q);
+                $total_sending = $run->fetch_assoc();
                 $totalSending = $total_sending['totalsend'];
                 ?>
                 <?php
-                $q="select sum(amount)as tatalgain from deposit_and_withdraw_his where d_or_w=1";
-                $run=$db->select($q);
-                $tatalgain=$run->fetch_assoc();
+                $q = "select sum(amount)as tatalgain from deposit_and_withdraw_his where d_or_w=1";
+                $run = $db->select($q);
+                $tatalgain = $run->fetch_assoc();
                 $tatalgain = $tatalgain['tatalgain'];
-                $totalGain=$tatalgain-$totalSending;
+                $totalGain = $tatalgain - $totalSending;
                 ?>
                 <?php
                 $query = "SELECT * FROM `bettintransaction`";
@@ -59,7 +66,7 @@ if (isset($_COOKIE['adminPanel'])) {
                 || Total Sending Amount= <?php echo round($totalSending, 2); ?>
                 || Total Saving Amount= <?php echo round($totalSaving, 2); ?>
 
-                <span style="color: green">  || Total S Amount= <?php echo round($s_save, 2); ?></span>
+                <span style="color: green"> || Total S Amount= <?php echo round($s_save, 2); ?></span>
 
             </h6>
 
@@ -79,134 +86,134 @@ if (isset($_COOKIE['adminPanel'])) {
                                 <div class="modal-header">
                                     <h5 class="modal-title">Match Title </h5>
                                     <a href="bettingPanel.php">
-                                    <span class="close" aria-hidden="true">×</span>
-                                     </a>
+                                        <span class="close" aria-hidden="true">×</span>
+                                    </a>
                                 </div>
                                 <form id=myForm>
-                                <div class="modal-body">
+                                    <div class="modal-body">
 
 
 
-                                    <div id="addMatchSuccess">
+                                        <div id="addMatchSuccess">
 
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">A Team</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="A_team" name="A_team" rows="4" placeholder="Enter A Team Name">
-                                            <span><input type="hidden" id="color_a" name="color_a" class="form-control" placeholder="Team Color"></span>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">B Team</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="B_team" name="B_team" rows="4" placeholder="Enter  B Team Name">
-                                             <span><input type="hidden" id="color_b" name="color_b" class="form-control" placeholder="Team Color"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">Bet Statement</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" id="title" name="title" rows="4" placeholder="Enter Bet Statement">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">Start Date</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" id="date" name="date" id="demoDate" type="date" placeholder="Select Date"></input>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">Start Time</label>
-                                        <div class="col-md-8">
-                                            <input  id="timesss" name="time" type="time" value="" onchange="ampm(this.value)">
-                                            <input type="hidden" id="selecttime">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">End Date</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" id="enddate" name="date" id="demoDate" type="date" placeholder="Select Date">
-                                        </div>
-                                    </div>
-									
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">End Time</label>
-                                        <div class="col-md-8">
-                                            <input  id="timesss" name="time" type="time" value="" onchange="ampm_end(this.value)">
-                                            <input type="hidden" id="selecttime_end">
-                                        </div>
-									</div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">Match Status</label>
-                                        <div class="col-md-8">
-                                            <!--Radio Button Markup-->
-                                            <div class="">
-                                                <label>
-                                                    <input type="radio" name="status" id="status" value="1"><span class="label-text"> Live</span><br>
-                                                    <input type="radio" name="status" id="status" value="2"><span class="label-text"> Upcoming</span>
-                                                </label>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">A Team</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="A_team" name="A_team" rows="4" placeholder="Enter A Team Name">
+                                                <span><input type="hidden" id="color_a" name="color_a" class="form-control" placeholder="Team Color"></span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3">Match Type</label>
-                                        <div class="col-md-8">
-                                            <!--Radio Button Markup-->
-                                            <div class="">
-                                                <label>
-                                                    <input type="radio" name="gameType" id="gameType" value="1" onchange="autoquestion(1)"><span class="label-text"> FootBall</span><br>
-                                                    <input class="gameTypec" type="radio" name="gameType" id="gameType" value="2" onchange="autoquestion(2)"><span class="label-text"> Cricket</span><br>
-                                                    <input type="radio" name="gameType" id="gameType" value="3" onchange="autoquestion(3)"><span class="label-text"> Basketball</span><br>
-
-                                                    <input type="radio" name="gameType" id="gameType" value="5" onchange="autoquestion(5)"><span class="label-text"> Tennis</span><br>
-                                                     <input type="radio" name="gameType" id="gameType" value="6" onchange="autoquestion(6)"><span class="label-text"> Table Tennis</span>
-                                                    <br>
-                                                </label>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">B Team</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="B_team" name="B_team" rows="4" placeholder="Enter  B Team Name">
+                                                <span><input type="hidden" id="color_b" name="color_b" class="form-control" placeholder="Team Color"></span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="autoquestion" style="max-height:200px;overflow-y:scroll">
-
-                                    </div>
-                                    <div class="form-group row hiddenOp" style="display: none">
-                                        <label class="control-label col-md-3">Match Status</label>
-                                        <div class="col-md-8">
-                                            <!--Radio Button Markup-->
-                                            <div class="">
-                                                <label>
-                                                    <input type="radio" name="status2" id="status2" value="1"><span class="label-text"> ODI</span><br>
-                                                    <input type="radio" name="status2" id="status2" value="2"><span class="label-text"> T20</span><br>
-                                                    <input type="radio" name="status2" id="status2" value="3"><span class="label-text"> Test</span>
-
-                                                </label>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">Bet Statement</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" id="title" name="title" rows="4" placeholder="Enter Bet Statement">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3"></label>
-                                        <div class="col-md-8">
-                                            <input  style="background-color: #996600; border: 1px solid #996600;" id="addMatchSubmit" type="submit" class="btn btn-success" value="submit">
-                                            <input  style="background-color: #996600; border: 1px solid #996600;"  id="addMatchSubmitDefault" type="submit" class="btn btn-success" value="Add With AutoQues">
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">Start Date</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" id="date" name="date" id="demoDate" type="date" placeholder="Select Date"></input>
+                                            </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">Start Time</label>
+                                            <div class="col-md-8">
+                                                <input id="timesss" name="time" type="time" value="" onchange="ampm(this.value)">
+                                                <input type="hidden" id="selecttime">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">End Date</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" id="enddate" name="date" id="demoDate" type="date" placeholder="Select Date">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">End Time</label>
+                                            <div class="col-md-8">
+                                                <input id="timesss" name="time" type="time" value="" onchange="ampm_end(this.value)">
+                                                <input type="hidden" id="selecttime_end">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">Match Status</label>
+                                            <div class="col-md-8">
+                                                <!--Radio Button Markup-->
+                                                <div class="">
+                                                    <label>
+                                                        <input type="radio" name="status" id="status" value="1"><span class="label-text"> Live</span><br>
+                                                        <input type="radio" name="status" id="status" value="2"><span class="label-text"> Upcoming</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">Match Type</label>
+                                            <div class="col-md-8">
+                                                <!--Radio Button Markup-->
+                                                <div class="">
+                                                    <label>
+                                                        <input type="radio" name="gameType" id="gameType" value="1" onchange="autoquestion(1)"><span class="label-text"> FootBall</span><br>
+                                                        <input class="gameTypec" type="radio" name="gameType" id="gameType" value="2" onchange="autoquestion(2)"><span class="label-text"> Cricket</span><br>
+                                                        <input type="radio" name="gameType" id="gameType" value="3" onchange="autoquestion(3)"><span class="label-text"> Basketball</span><br>
+
+                                                        <input type="radio" name="gameType" id="gameType" value="5" onchange="autoquestion(5)"><span class="label-text"> Tennis</span><br>
+                                                        <input type="radio" name="gameType" id="gameType" value="6" onchange="autoquestion(6)"><span class="label-text"> Table Tennis</span>
+                                                        <br>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="autoquestion" style="max-height:200px;overflow-y:scroll">
+
+                                        </div>
+                                        <div class="form-group row hiddenOp" style="display: none">
+                                            <label class="control-label col-md-3">Match Status</label>
+                                            <div class="col-md-8">
+                                                <!--Radio Button Markup-->
+                                                <div class="">
+                                                    <label>
+                                                        <input type="radio" name="status2" id="status2" value="1"><span class="label-text"> ODI</span><br>
+                                                        <input type="radio" name="status2" id="status2" value="2"><span class="label-text"> T20</span><br>
+                                                        <input type="radio" name="status2" id="status2" value="3"><span class="label-text"> Test</span>
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3"></label>
+                                            <div class="col-md-8">
+                                                <input style="background-color: #996600; border: 1px solid #996600;" id="addMatchSubmit" type="submit" class="btn btn-success" value="submit">
+                                                <input style="background-color: #996600; border: 1px solid #996600;" id="addMatchSubmitDefault" type="submit" class="btn btn-success" value="Add With AutoQues">
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
-
-
-
-                                </div>
                                 </form>
                                 <div class="modal-footer">
 
                                     <a href="bettingPanel.php">
-                                    <button>Close</button>
+                                        <button>Close</button>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- hidden-match -->
                     <div id="hidden-match" class="modal" style="">
                         <div class="modal-dialog" role="document">
@@ -224,9 +231,9 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
-                     <!-- Closed-match -->
+                    <!-- Closed-match -->
                     <div id="closed-match" class="modal" style="">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -243,9 +250,9 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
-                     <!-- Closed-match question -->
+                    <!-- Closed-match question -->
                     <div id="closed-match-question" class="modal" style="">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -262,10 +269,10 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
-                    <a id="new" class="btn btn-primary icon-btn" href="" data-toggle="modal" data-target="#add-bet"><i class="fa fa-plus"></i>Add Item	</a>
-                    <a id="new" class="btn btn-success" href="" ><i class="fa fa-refresh"></i>Refresh</a>
+                    <a id="new" class="btn btn-primary icon-btn" href="" data-toggle="modal" data-target="#add-bet"><i class="fa fa-plus"></i>Add Item </a>
+                    <a id="new" class="btn btn-success" href=""><i class="fa fa-refresh"></i>Refresh</a>
                     <a id="hidden" class="btn btn-primary" href="" id="hidden" data-toggle="modal" data-target="#hidden-match">hidden match </a>
                     <br><br>
                     <h6 style="color: #DD5347">Live Match</h6>
@@ -294,7 +301,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                         <div class="form-group row">
 
                                             <div class="col-md-6">
-                                                <input class="form-control" name="input_field" id="addQustionOfMatch"  placeholder="Enter Question">
+                                                <input class="form-control" name="input_field" id="addQustionOfMatch" placeholder="Enter Question">
 
 
                                             </div>
@@ -305,7 +312,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
                                         <label class="control-label col-md-3"></label>
                                         <div class="col-md-8">
-                                            <input name="bettingId" id="bettingIdForAddQuestion" type="text"  value="" hidden="1">
+                                            <input name="bettingId" id="bettingIdForAddQuestion" type="text" value="" hidden="1">
                                         </div>
                                     </div>
 
@@ -326,8 +333,8 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
-        <!-- limitMatch -->
+                    </div> <!-- end Modal -->
+                    <!-- limitMatch -->
                     <div id="scoreModal" class="modal" style="">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -348,14 +355,14 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input class="form-control" name="limitRateAmount" id="ScoreRateForMatch"  value="">
+                                            <input class="form-control" name="limitRateAmount" id="ScoreRateForMatch" value="">
 
                                         </div>
                                     </div>
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input name="bettingId" id="matchIdForScore" type="text"  value="" hidden="1">
+                                            <input name="bettingId" id="matchIdForScore" type="text" value="" hidden="1">
                                         </div>
                                     </div>
 
@@ -364,7 +371,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
                                         <label class="control-label col-md-3"></label>
                                         <div class="col-md-8">
-                                            <input  style="color: white; background-color: #996600; border: 1px solid #996600;" name="limitBettingTitle" id="score" type="submit" class="btn btn-success" value="submit">
+                                            <input style="color: white; background-color: #996600; border: 1px solid #996600;" name="limitBettingTitle" id="score" type="submit" class="btn btn-success" value="submit">
                                         </div>
                                     </div>
 
@@ -377,7 +384,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- limitMatch -->
                     <div id="limitMatch" class="modal" style="">
                         <div class="modal-dialog" role="document">
@@ -399,14 +406,14 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input class="form-control" name="limitRateAmount" id="limitRateForMatch"  value="">
+                                            <input class="form-control" name="limitRateAmount" id="limitRateForMatch" value="">
 
                                         </div>
                                     </div>
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input name="bettingId" id="matchIdForLimit" type="text"  value="" hidden="1">
+                                            <input name="bettingId" id="matchIdForLimit" type="text" value="" hidden="1">
                                         </div>
                                     </div>
 
@@ -428,7 +435,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- wait -->
                     <div id="matchWatting" class="modal" style="">
                         <div class="modal-dialog" role="document">
@@ -439,26 +446,26 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                                 <div class="modal-body">
                                     <form method="post">
-                                    <h6>match : <span id="matchShowOfWait"></span></h6>
-                                    <div id="waitMatchSuccess">
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-8">
-                                            <input class="form-control" id="matchWaittingRate" name="matchwaittime" value="">
+                                        <h6>match : <span id="matchShowOfWait"></span></h6>
+                                        <div id="waitMatchSuccess">
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-8">
-                                            <input name="bettingId" id="matchIdForWait" type="text"  value="" hidden="1">
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <input class="form-control" id="matchWaittingRate" name="matchwaittime" value="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3"></label>
-                                        <div class="col-md-8">
-                                            <input id="new" name="waitBettingTitle" id="matchWattingTimeSubmit"type="submit" class="btn btn-success" value="submit">
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <input name="bettingId" id="matchIdForWait" type="text" value="" hidden="1">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3"></label>
+                                            <div class="col-md-8">
+                                                <input id="new" name="waitBettingTitle" id="matchWattingTimeSubmit" type="submit" class="btn btn-success" value="submit">
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
 
@@ -466,7 +473,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- limitQuestion -->
                     <div id="limitQuestion" class="modal" style="">
                         <div class="modal-dialog" role="document">
@@ -477,7 +484,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h6 style="color: black;">Question  : <span id="questionShowOfLimit"></span></h6>
+                                    <h6 style="color: black;">Question : <span id="questionShowOfLimit"></span></h6>
 
 
                                     <div id="limitQuestionSuccess">
@@ -488,14 +495,14 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input class="form-control" name="limitRateAmount" id="limitRateForQuestion"  value="">
+                                            <input class="form-control" name="limitRateAmount" id="limitRateForQuestion" value="">
 
                                         </div>
                                     </div>
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input name="bettingId" id="questionIdForLimit" type="text"  value="" hidden="1">
+                                            <input name="bettingId" id="questionIdForLimit" type="text" value="" hidden="1">
                                         </div>
                                     </div>
 
@@ -517,7 +524,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- wait -->
                     <div id="questionWatting" class="modal" style="">
                         <div class="modal-dialog" role="document">
@@ -528,26 +535,26 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                                 <div class="modal-body">
                                     <form method="post">
-                                    <h6>match : <span id="questionShowOfWait"></span></h6>
-                                    <div id="waitQuestionSuccess">
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-8">
-                                            <input class="form-control" id="questionWaittingRate" name="questionwatingtime" value="">
+                                        <h6>match : <span id="questionShowOfWait"></span></h6>
+                                        <div id="waitQuestionSuccess">
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-8">
-                                            <input name="questionid" id="questionIdForWait" type="text"  value="" hidden="1">
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <input class="form-control" id="questionWaittingRate" name="questionwatingtime" value="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3"></label>
-                                        <div class="col-md-8">
-                                            <input id="new" name="waitBettingquestion" id="questionWattingTimeSubmit"type="submit" class="btn btn-success" value="submit">
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <input name="questionid" id="questionIdForWait" type="text" value="" hidden="1">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3"></label>
+                                            <div class="col-md-8">
+                                                <input id="new" name="waitBettingquestion" id="questionWattingTimeSubmit" type="submit" class="btn btn-success" value="submit">
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
 
@@ -555,7 +562,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- matchActionMenu -->
                     <div id="matchActionMenu" class="modal" style="">
                         <div class="modal-dialog modal-sm" role="document">
@@ -570,7 +577,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                         <a style="color: white; background-color: #996600; border: 1px solid #996600;" href="#" class="list-group-item btn btn-sm updateMatch" data-toggle="modal" data-target="#updateMatch" data-dismiss="modal">Update match</a>
 
 
-                                        <button style="color: white; background-color: #996600; border: 1px solid #996600;" class="list-group-item btn btn-sm closeMatch" >Close The Match</button>
+                                        <button style="color: white; background-color: #996600; border: 1px solid #996600;" class="list-group-item btn btn-sm closeMatch">Close The Match</button>
                                     </div>
 
 
@@ -582,7 +589,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- hidden-match -->
                     <div id="hidden-section" class="modal" style="">
                         <div class="modal-dialog" role="document">
@@ -600,7 +607,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
                     <!-- matchActionMenu -->
                     <div id="default" class="modal" style="">
@@ -620,10 +627,10 @@ if (isset($_COOKIE['adminPanel'])) {
                                             while ($receivingMoneyNumber = $resultreceivingMoneyNumber->fetch_assoc()) {
 
                                                 $i++;
-                                                ?>
+                                        ?>
 
                                                 <a style="color: #996600;" href="#" class="list-group-item btn btn-sm section" g-type="2" id="<?php echo $receivingMoneyNumber['id']; ?>" data-toggle="modal" data-target="#hidden-section"> <?php echo $receivingMoneyNumber['title']; ?></a>
-                                                <?php
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -639,7 +646,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
                     <!-- Modal update match-->
                     <div id="updateMatch" class="modal" style="">
@@ -658,16 +665,16 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
                                         <label class="control-label col-md-3">A Team</label>
                                         <div class="col-md-8">
-                                            <input type="hidden" class="form-control matchIdForUpdate" id="" rows="4" value="" >
+                                            <input type="hidden" class="form-control matchIdForUpdate" id="" rows="4" value="">
                                             <input type="text" class="form-control" id="Update_A_team" name="A_team" rows="4" value="" placeholder="Enter A Team Name">
-                                             <span><input type="hidden" id="color_aup" name="color_aup" class="form-control" placeholder="Team Color"></span>
+                                            <span><input type="hidden" id="color_aup" name="color_aup" class="form-control" placeholder="Team Color"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="control-label col-md-3">B Team</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control"  id="Update_B_team" rows="4" value="" placeholder="Enter  B Team Name">
-                                             <span><input type="hidden" id="color_bup" name="color_bup" class="form-control" placeholder="Team Color"></span>
+                                            <input type="text" class="form-control" id="Update_B_team" rows="4" value="" placeholder="Enter  B Team Name">
+                                            <span><input type="hidden" id="color_bup" name="color_bup" class="form-control" placeholder="Team Color"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -686,24 +693,24 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
                                         <label class="control-label col-md-3">Start Time</label>
                                         <div class="col-md-8">
-                                            <input  id="timesss" name="time" type="time" value="" onchange="ampmupdate(this.value)"></input>
+                                            <input id="timesss" name="time" type="time" value="" onchange="ampmupdate(this.value)"></input>
                                             <input type="hidden" id="selecttimeupdate">
                                         </div>
                                     </div>
-									<div class="form-group row">
+                                    <div class="form-group row">
                                         <label class="control-label col-md-3">End Date</label>
                                         <div class="col-md-8">
                                             <input class="form-control" id="update_enddate" name="date" id="demoDate" type="date" placeholder="Select Date">
                                         </div>
                                     </div>
-                                     <div class="form-group row">
-										 <label class="control-label col-md-3">End Time</label>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">End Time</label>
                                         <div class="col-md-8">
-                                            <input  id="timesss" name="time" type="time" value="" onchange="ampm_end_update(this.value)">
-										 <input type="hidden" id="selecttimeupdate_end">
-				</div>
+                                            <input id="timesss" name="time" type="time" value="" onchange="ampm_end_update(this.value)">
+                                            <input type="hidden" id="selecttimeupdate_end">
+                                        </div>
 
-				</div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="control-label col-md-3">Match Status</label>
                                         <div class="col-md-8">
@@ -724,9 +731,9 @@ if (isset($_COOKIE['adminPanel'])) {
                                                 <label>
                                                     <input type="radio" name="gameType" id="Update_gameType" value="1"><span class="label-text"> FootBall</span><br>
                                                     <input class="gameTypec" type="radio" name="gameType" id="Update_gameType" value="2"><span class="label-text"> Cricket</span><br>
-                                                    <input type="radio" name="gameType" id="Update_gameType" value="3" ><span class="label-text"> Basketball</span><br>
+                                                    <input type="radio" name="gameType" id="Update_gameType" value="3"><span class="label-text"> Basketball</span><br>
 
-                                                    <input type="radio" name="gameType" id="Update_gameType" value="5" ><span class="label-text"> Tennis</span><br>
+                                                    <input type="radio" name="gameType" id="Update_gameType" value="5"><span class="label-text"> Tennis</span><br>
                                                     <input type="radio" name="gameType" id="Update_gameType" value="6"><span class="label-text"> Table Tennis</span>
                                                     <br>
 
@@ -749,7 +756,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- questionActionMenu -->
                     <div id="questionActionMenu" class="modal" style="">
                         <div class="modal-dialog modal-sm" role="document">
@@ -763,7 +770,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                         <a style="color: white; background-color: #996600; border: 1px solid #996600;" href="#" class="list-group-item btn btn-sm addAns" data-toggle="modal" data-target="#addAns">Add Answer</a>
                                         <a style="color: white; background-color: #996600; border: 1px solid #996600;" href="#" class="list-group-item btn btn-sm updateQuestion" data-toggle="modal" data-target="#updateQuestion" data-dismiss="modal">Update question</a>
 
-                                        <button  style="color: white; background-color: #996600; border: 1px solid #996600;" class="list-group-item btn btn-sm closeQuestion" onclick="return confirm('Are you sure?')" >Close The question</button>
+                                        <button style="color: white; background-color: #996600; border: 1px solid #996600;" class="list-group-item btn btn-sm closeQuestion" onclick="return confirm('Are you sure?')">Close The question</button>
                                     </div>
 
 
@@ -775,10 +782,10 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- addAns Modal -->
                     <div id="addAns" class="modal" style="">
-                        <div class="modal-dialog "  role="document">
+                        <div class="modal-dialog " role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Add </h5>
@@ -790,21 +797,21 @@ if (isset($_COOKIE['adminPanel'])) {
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6">
-                                            <input class="form-control" id="addAnsField"  placeholder="Enter Ans">
+                                            <input class="form-control" id="addAnsField" placeholder="Enter Ans">
                                         </div>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="addAnsRate"  placeholder="Rate">
+                                            <input class="form-control" id="addAnsRate" placeholder="Rate">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-8">
-                                            <input  id="questionIdForAddAns" type="text"  value="" hidden="1">
+                                            <input id="questionIdForAddAns" type="text" value="" hidden="1">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="control-label col-md-3"></label>
                                         <div class="col-md-8">
-                                            <input  id="addAnsSubmit" type="submit" class="btn btn-success" value="submit">
+                                            <input id="addAnsSubmit" type="submit" class="btn btn-success" value="submit">
                                         </div>
                                     </div>
 
@@ -815,10 +822,10 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
                     <!-- update-sub-betting Modal -->
                     <div id="updateQuestion" class="modal" style="">
-                        <div class="modal-dialog "  role="document">
+                        <div class="modal-dialog " role="document">
                             <div class="modal-content">
 
                                 <div class="modal-header">
@@ -835,8 +842,8 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
                                         <label class="control-label col-md-3">Question</label>
                                         <div class="col-md-8">
-                                            <input type="hidden" class="form-control questionIdForUpdate" id="" rows="4" value="" >
-                                            <input class="form-control" id="editQuestion"  value="">
+                                            <input type="hidden" class="form-control questionIdForUpdate" id="" rows="4" value="">
+                                            <input class="form-control" id="editQuestion" value="">
 
                                         </div>
                                     </div>
@@ -857,7 +864,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
 
 
@@ -876,19 +883,19 @@ if (isset($_COOKIE['adminPanel'])) {
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-8">
-                                            <input class="form-control"  id="editAnswer" value="">
-                                            <input type="hidden" class="form-control ansIdForUpdate" id="" rows="4" value="" >
+                                            <input class="form-control" id="editAnswer" value="">
+                                            <input type="hidden" class="form-control ansIdForUpdate" id="" rows="4" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-8">
-                                            <input class="form-control rate"  id="editRateAmount" >
+                                            <input class="form-control rate" id="editRateAmount">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="control-label col-md-3"></label>
                                         <div class="col-md-8">
-                                            <input  id="updateAnsSubmit" type="submit" class="btn btn-success" value="submit">
+                                            <input id="updateAnsSubmit" type="submit" class="btn btn-success" value="submit">
                                         </div>
                                     </div>
 
@@ -896,7 +903,7 @@ if (isset($_COOKIE['adminPanel'])) {
 
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
                     <!-- limit betting rate -->
                     <div id="limitAns" class="modal" style="">
@@ -913,13 +920,13 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input class="form-control" id="limitRateAmount"  value="">
+                                            <input class="form-control" id="limitRateAmount" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
 
                                         <div class="col-md-8">
-                                            <input class="form-control"  id="ansIdForLimit"  value="" hidden="1">
+                                            <input class="form-control" id="ansIdForLimit" value="" hidden="1">
 
                                         </div>
                                     </div>
@@ -927,7 +934,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                     <div class="form-group row">
                                         <label class="control-label col-md-3"></label>
                                         <div class="col-md-8">
-                                            <input  id="limitRateForAnsSubmit" type="submit" class="btn btn-success" value="submit">
+                                            <input id="limitRateForAnsSubmit" type="submit" class="btn btn-success" value="submit">
                                         </div>
                                     </div>
 
@@ -938,7 +945,7 @@ if (isset($_COOKIE['adminPanel'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>  <!-- end Modal -->
+                    </div> <!-- end Modal -->
 
                     <div id="liveMatchFetch">
                         <div class="loader loader-1">
@@ -947,7 +954,8 @@ if (isset($_COOKIE['adminPanel'])) {
                         </div>
 
                     </div>
-                    <br> <h6 style="color: #17A05D">Upcoming Match</h6>
+                    <br>
+                    <h6 style="color: #17A05D">Upcoming Match</h6>
 
                     <div id="upcomingContent">
 
@@ -962,25 +970,24 @@ if (isset($_COOKIE['adminPanel'])) {
 </main>
 <?php include './footer.php'; ?>
 <script>
+    $(document).ready(function() {
+        $("#liveMatchFetch").load('betLiveContent.php');
+        $("#upcomingContent").load('upcomingMatch.php');
 
-                                            $(document).ready(function () {
-                                                $("#liveMatchFetch").load('betLiveContent.php');
-                                                $("#upcomingContent").load('upcomingMatch.php');
+    });
 
-                                            });
-
-                                            $(document).on('click', '#hidden', function (event) {
-                                                $("#hiddenContentShow").load('hiddenContent.php');
-
+    $(document).on('click', '#hidden', function(event) {
+        $("#hiddenContentShow").load('hiddenContent.php');
 
 
-                                            });
-                                               $(document).on('click', '#closedmatch', function (event) {
-                                                $("#closedContentShow").load('closedMatch.php');
-                                                  });
-                                               $(document).on('click', '#closedquestion', function (event) {
-                                                $("#closedQuestionShow").load('closedQuestion.php');
-                                                  });
+
+    });
+    $(document).on('click', '#closedmatch', function(event) {
+        $("#closedContentShow").load('closedMatch.php');
+    });
+    $(document).on('click', '#closedquestion', function(event) {
+        $("#closedQuestionShow").load('closedQuestion.php');
+    });
 </script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="js/plugins/pace.min.js"></script>
@@ -997,150 +1004,143 @@ if (isset($_COOKIE['adminPanel'])) {
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="js/betAction.js"></script>
 <script>
+    $(function() {
 
-                                            $(function () {
+        setInterval(function() {
+            if ($("#success").is(":visible")) {
+                //you may add animate.css class for fancy fadeout
+                $("#success").fadeOut("fast");
+            }
+        }, 1000);
 
-                                                setInterval(function () {
-                                                    if ($("#success").is(":visible")) {
-                                                        //you may add animate.css class for fancy fadeout
-                                                        $("#success").fadeOut("fast");
-                                                    }
-                                                }, 1000);
+    });
 
-                                            });
-
-                                            $('.editRate').on('shown.bs.modal', function () {
-                                                $(this).find('.rate').focus();
-                                            });
-
-
-                                            setInterval(function () {
-                                                $.ajax({
-                                                    url: "betRefresh.php",
-                                                    success: function (data) {
-
-                                                        if (data === "1") {
-                                                            $("#liveMatchFetch").load('betLiveContent.php');
-                                                            $("#upcomingContent").load('upcomingMatch.php');
-                                                        }
-                                                    }
-                                                });
-                                            },6000);
-                                            $(document).on('click', '.gameTypec', function () {
-
-                                                $('.hiddenOp').toggle();
+    $('.editRate').on('shown.bs.modal', function() {
+        $(this).find('.rate').focus();
+    });
 
 
-                                            });
+    setInterval(function() {
+        $.ajax({
+            url: "betRefresh.php",
+            success: function(data) {
 
+                if (data === "1") {
+                    $("#liveMatchFetch").load('betLiveContent.php');
+                    $("#upcomingContent").load('upcomingMatch.php');
+                }
+            }
+        });
+    }, 6000);
+    $(document).on('click', '.gameTypec', function() {
+
+        $('.hiddenOp').toggle();
+
+
+    });
 </script>
 
 <?php
-if(isset($_POST['waitBettingTitle']))
-{
-    $match_id=$_POST['bettingId'];
-    $waiting=$_POST['matchwaittime'];
-    $q="update betting_title set waittingTime='$waiting' where id='$match_id'";
-    if(mysqli_query($con,$q))
-    {
-
+if (isset($_POST['waitBettingTitle'])) {
+    $match_id = $_POST['bettingId'];
+    $waiting = $_POST['matchwaittime'];
+    $q = "update betting_title set waittingTime='$waiting' where id='$match_id'";
+    if (mysqli_query($con, $q)) {
     }
 }
 
-if(isset($_POST['waitBettingquestion']))
-{
-    $questionid=$_POST['questionid'];
-    $waiting=$_POST['questionwatingtime'];
-    $q="update betting_subtitle set waittingTime='$waiting' where id='$questionid'";
-    if(mysqli_query($con,$q))
-    {
-
+if (isset($_POST['waitBettingquestion'])) {
+    $questionid = $_POST['questionid'];
+    $waiting = $_POST['questionwatingtime'];
+    $q = "update betting_subtitle set waittingTime='$waiting' where id='$questionid'";
+    if (mysqli_query($con, $q)) {
     }
 }
 
 ?>
 </body>
 <script>
+    function autoquestion(gameid) {
 
 
-  function autoquestion(gameid) {
+        $.ajax({
+            method: "POST",
+            url: "autoquestion.php",
+            data: {
+                gameid: gameid
+            },
+            success: function(data) {
+
+                $("#autoquestion").html(data);
 
 
-   $.ajax({
-        method: "POST",
-        url: "autoquestion.php",
-        data: {gameid:gameid},
-        success: function (data) {
+            }
+        });
+    }
 
-           $("#autoquestion").html(data);
+    function ampm(time) {
 
+        console.log(time);
+        if (time.value !== "") {
+            var hours = time.split(":")[0];
+            var minutes = time.split(":")[1];
+            var suffix = hours >= 12 ? "pm" : "am";
+            hours = hours % 12 || 12;
+            hours = hours < 10 ? "0" + hours : hours;
 
+            var displayTime = hours + ":" + minutes + " " + suffix;
+            //document.getElementById("display_time").innerHTML = displayTime;
+            $('#selecttime').val(displayTime);
         }
-    });
-}
-function ampm(time) {
+    }
 
-  console.log(time);
-  if (time.value !== "") {
-    var hours = time.split(":")[0];
-    var minutes = time.split(":")[1];
-    var suffix = hours >= 12 ? "pm" : "am";
-    hours = hours % 12 || 12;
-    hours = hours < 10 ? "0" + hours : hours;
+    function ampm_end(time) {
 
-    var displayTime = hours + ":" + minutes + " " + suffix;
-    //document.getElementById("display_time").innerHTML = displayTime;
-    $('#selecttime').val(displayTime);
-  }
-}
+        console.log(time);
+        if (time.value !== "") {
+            var hours = time.split(":")[0];
+            var minutes = time.split(":")[1];
+            var suffix = hours >= 12 ? "pm" : "am";
+            hours = hours % 12 || 12;
+            hours = hours < 10 ? "0" + hours : hours;
 
-function ampm_end(time) {
+            var displayTime = hours + ":" + minutes + " " + suffix;
+            //document.getElementById("display_time").innerHTML = displayTime;
+            $('#selecttime_end').val(displayTime);
+        }
+    }
 
-  console.log(time);
-  if (time.value !== "") {
-    var hours = time.split(":")[0];
-    var minutes = time.split(":")[1];
-    var suffix = hours >= 12 ? "pm" : "am";
-    hours = hours % 12 || 12;
-    hours = hours < 10 ? "0" + hours : hours;
+    function ampmupdate(time) {
 
-    var displayTime = hours + ":" + minutes + " " + suffix;
-    //document.getElementById("display_time").innerHTML = displayTime;
-    $('#selecttime_end').val(displayTime);
-  }
-}
+        console.log(time);
+        if (time.value !== "") {
+            var hours = time.split(":")[0];
+            var minutes = time.split(":")[1];
+            var suffix = hours >= 12 ? "pm" : "am";
+            hours = hours % 12 || 12;
+            hours = hours < 10 ? "0" + hours : hours;
 
-function ampmupdate(time) {
+            var displayTime = hours + ":" + minutes + " " + suffix;
+            //document.getElementById("display_time").innerHTML = displayTime;
+            $('#selecttimeupdate').val(displayTime);
+        }
+    }
 
-  console.log(time);
-  if (time.value !== "") {
-    var hours = time.split(":")[0];
-    var minutes = time.split(":")[1];
-    var suffix = hours >= 12 ? "pm" : "am";
-    hours = hours % 12 || 12;
-    hours = hours < 10 ? "0" + hours : hours;
+    function ampm_end_update(time) {
 
-    var displayTime = hours + ":" + minutes + " " + suffix;
-    //document.getElementById("display_time").innerHTML = displayTime;
-    $('#selecttimeupdate').val(displayTime);
-  }
-}
+        console.log(time);
+        if (time.value !== "") {
+            var hours = time.split(":")[0];
+            var minutes = time.split(":")[1];
+            var suffix = hours >= 12 ? "pm" : "am";
+            hours = hours % 12 || 12;
+            hours = hours < 10 ? "0" + hours : hours;
 
-function ampm_end_update(time) {
-
-  console.log(time);
-  if (time.value !== "") {
-    var hours = time.split(":")[0];
-    var minutes = time.split(":")[1];
-    var suffix = hours >= 12 ? "pm" : "am";
-    hours = hours % 12 || 12;
-    hours = hours < 10 ? "0" + hours : hours;
-
-    var displayTime = hours + ":" + minutes + " " + suffix;
-    //document.getElementById("display_time").innerHTML = displayTime;
-    $('#selecttimeupdate_end').val(displayTime);
-  }
-}
+            var displayTime = hours + ":" + minutes + " " + suffix;
+            //document.getElementById("display_time").innerHTML = displayTime;
+            $('#selecttimeupdate_end').val(displayTime);
+        }
+    }
 </script>
 
 
@@ -1148,4 +1148,5 @@ function ampm_end_update(time) {
 $dt = new DateTime('now');
 
 ?>
+
 </html>
