@@ -15,7 +15,7 @@ $(document).on('click', '.matchActionMenu', function () {
     $('.closeMatch').attr({
         id: match_id
     });
-     $('.cancelMatch').attr({
+    $('.cancelMatch').attr({
         id: match_id
     });
 
@@ -57,7 +57,7 @@ $(document).on('click', '.toLive', function () {
 
 });
 $(document).on('click', '.updateMatch', function () {
-//update match select or show
+    //update match select or show
     $('#matchActionMenu').modal('hide');
     var match_id = $(this).attr("id");
 
@@ -74,8 +74,8 @@ $(document).on('click', '.updateMatch', function () {
             $('#Update_B_team').val(data.B_team);
             $('#Update_title').val(data.title);
             $('#Update_date').val(data.date);
-             $('#color_aup').val(data.color_a);
-              $('#color_bup').val(data.color_b);
+            $('#color_aup').val(data.color_a);
+            $('#color_bup').val(data.color_b);
             $('.matchIdForUpdate').attr({
                 id: match_id
             });
@@ -89,7 +89,7 @@ $(document).on('click', '.updateMatch', function () {
 
 });
 $(document).on('click', '.updateQuestion', function () {
-//update match select or show
+    //update match select or show
     $('#questionActionMenu').modal('hide');
     var question_id = $(this).attr("id");
 
@@ -117,7 +117,7 @@ $(document).on('click', '.updateQuestion', function () {
 
 });
 $(document).on('click', '.updateAnsRate', function () {
-//update match select or show
+    //update match select or show
     var ans_id = $(this).attr("id");
     var tt = $(this).attr("tt");
     // $('#bettingIdForAddQuestion').val(ans_id);
@@ -133,6 +133,7 @@ $(document).on('click', '.updateAnsRate', function () {
 });
 
 $(document).on('click', '#addMatchSubmit', function (event) {
+
     event.preventDefault();
     var A_team = $('#A_team').val();
     var color_a = $('#color_a').val();
@@ -140,48 +141,22 @@ $(document).on('click', '#addMatchSubmit', function (event) {
     var color_b = $('#color_b').val();
     var title = $('#title').val();
     var date = $('#date').val();
-    var time = $("#selecttime").val();
-    var enddate = $("#enddate").val();
-    var end_time = $("#selecttime_end").val();
+
     var status = $("#status:checked").val();
     var gameType = $("#gameType:checked").val();
-    var addMatch = 1;
-
-    console.log({
-        A_team: A_team,
-        color_a:color_a,
-        B_team: B_team,
-        color_b:color_b,
-        title: title,
-        date: date,
-        time: time,
-        enddate: enddate,
-        end_time : end_time,
-        status: status,
-        gameType: gameType,
-        addMatch: addMatch
-
-    });
-
-    return 0;
 
     $.ajax({
         method: "POST",
-        url: "betPanelDataFetch.php",
+        url: "./action/bettingPanel/AddMatch.php",
         data: {
             A_team: A_team,
-            color_a:color_a,
+            color_a: color_a,
             B_team: B_team,
-            color_b:color_b,
+            color_b: color_b,
             title: title,
             date: date,
-            time: time,
-			enddate: enddate,
-			end_time : end_time,
             status: status,
             gameType: gameType,
-            addMatch: addMatch
-
         },
         success: function (data) {
 
@@ -193,6 +168,9 @@ $(document).on('click', '#addMatchSubmit', function (event) {
 
             $("#liveMatchFetch").load('betLiveContent.php');
             $("#upcomingContent").load('upcomingMatch.php');
+        },
+        error: function(error){
+            console.log(error);
         }
     });
 
@@ -226,8 +204,8 @@ $(document).on('click', '#addMatchSubmitDefault', function (event) {
             title: title,
             date: date,
             time: time,
-			enddate: enddate,
-			end_time: end_time,
+            enddate: enddate,
+            end_time: end_time,
             status: status,
             gameType: gameType,
             status2: status2,
@@ -266,14 +244,14 @@ $(document).on('click', '#updateMatchSubmit', function (event) {
         url: "betPanelDataFetch.php",
         data: {
             A_team: A_team,
-            color_aup:color_aup,
+            color_aup: color_aup,
             B_team: B_team,
-            color_bup:color_bup,
+            color_bup: color_bup,
             title: title,
             date: date,
-            time:time,
-			end_date:end_date,
-			end_time: end_time,
+            time: time,
+            end_date: end_date,
+            end_time: end_time,
             status: status,
             gameType: gameType,
             updateMatch: updateMatch,
@@ -500,23 +478,23 @@ $(document).on('click', '.deleteMatch', function () {
 $(document).on('click', '.closeMatch', function () {
 
     var result = confirm("Want to Close?");
-if (result) {
+    if (result) {
 
-     var match_id = $(this).attr("id");
-    $.ajax({
-        method: "POST",
-        url: "betPanelDataFetch.php",
-        data: {
-            closeMatch: match_id
-        },
-        success: function (data) {
-            //page refresh
-            $("#liveMatchFetch").load('betLiveContent.php');
-            $("#upcomingContent").load('upcomingMatch.php');
+        var match_id = $(this).attr("id");
+        $.ajax({
+            method: "POST",
+            url: "betPanelDataFetch.php",
+            data: {
+                closeMatch: match_id
+            },
+            success: function (data) {
+                //page refresh
+                $("#liveMatchFetch").load('betLiveContent.php');
+                $("#upcomingContent").load('upcomingMatch.php');
 
-        }
-    });
-}
+            }
+        });
+    }
 
 
 
@@ -537,7 +515,7 @@ $(document).on('click', '.cancelMatch', function () {
             //page refresh
             $("#liveMatchFetch").load('betLiveContent.php');
             $("#upcomingContent").load('upcomingMatch.php');
-          // alert(data);
+            // alert(data);
         }
     });
 
@@ -833,7 +811,7 @@ $(document).on('click', '.questionlimit', function () {
 
 });
 $(document).on('click', '.limitAns', function () {
-//select
+    //select
     var ans_id = $(this).attr("id");
     $('#ansIdForLimit').val(ans_id);
     var limitAnsSelect = 1;
@@ -1211,7 +1189,7 @@ $(document).on('click', '.closedquestionToLive', function (event) {
         },
         success: function (data) {
 
-             $("#closedQuestionShow").load('closedQuestion.php');
+            $("#closedQuestionShow").load('closedQuestion.php');
             //page refresh
             $("#liveMatchFetch").load('betLiveContent.php');
             $("#upcomingContent").load('upcomingMatch.php');
@@ -1269,7 +1247,7 @@ $(document).on('click', '.matchActiondefault', function (event) {
 $("#league").change(function () {
     var str = "";
     var name = "";
-    $(this).find('option:selected').each(function() {
+    $(this).find('option:selected').each(function () {
         str = $(this).attr('value');
         name = $(this).attr('name');
     });
@@ -1286,6 +1264,8 @@ $("#league").change(function () {
         }
     });
 });
+
+
 $(document).on('click', '#addMatchSubmitLea', function (event) {
     event.preventDefault();
     var league = $('#league').val();
@@ -1371,7 +1351,7 @@ $(document).on('click', '.optionRateButt', function (event) {
             positionUpdate: positionUpdate
         },
         success: function (data) {
-            $("#liveMatchFetch").load('betLiveContentAuto.php',{matchId: matchId});
+            $("#liveMatchFetch").load('betLiveContentAuto.php', { matchId: matchId });
         }
     });
 

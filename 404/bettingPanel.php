@@ -68,79 +68,75 @@ $leagues = DB::table('leagues')->select('id', 'name')->get();
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Match Title <?= \Illuminate\Support\Carbon::now()->format('d-F-Y H:s:i A')  ?></h5>
+                                    <h5 class="modal-title">Add New Match</h5>
                                     <a href="bettingPanel.php">
                                         <span class="close" aria-hidden="true">×</span>
                                     </a>
                                 </div>
-                                <form id=myForm>
-                                    <div class="modal-body">
-
-
-
-                                        <div id="addMatchSuccess">
-
+                                <div class="modal-body">
+                                    <div id="addMatchSuccess"></div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">A Team</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="A_team" name="A_team" rows="4" placeholder="Enter A Team Name">
+                                            <span><input type="hidden" id="color_a" name="color_a" class="form-control" placeholder="Team Color"></span>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">A Team</label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" id="A_team" name="A_team" rows="4" placeholder="Enter A Team Name">
-                                                <span><input type="hidden" id="color_a" name="color_a" class="form-control" placeholder="Team Color"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">B Team</label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" id="B_team" name="B_team" rows="4" placeholder="Enter  B Team Name">
-                                                <span><input type="hidden" id="color_b" name="color_b" class="form-control" placeholder="Team Color"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">Bet Statement</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" id="title" name="title" rows="4" placeholder="Enter Bet Statement">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">Start Date</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" id="date" name="date" id="demoDate" type="text" placeholder="Select Date"></input>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">Match Status</label>
-                                            <div class="col-md-8">
-                                                <!--Radio Button Markup-->
-                                                <div class="">
-                                                    <label>
-                                                        <input type="radio" name="status" id="status" value="1"><span class="label-text"> Live</span><br>
-                                                        <input type="radio" name="status" id="status" value="2"><span class="label-text"> Upcoming</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-3">Match Type</label>
-                                            <div class="col-md-8">
-                                                <!--Radio Button Markup-->
-                                                <div class="">
-                                                    <label>
-                                                        <input type="radio" name="gameType" id="gameType" value="1" onchange="autoquestion(1)"><span class="label-text"> FootBall</span><br>
-                                                        <input class="gameTypec" type="radio" name="gameType" id="gameType" value="2" onchange="autoquestion(2)"><span class="label-text"> Cricket</span><br>
-                                                        <input type="radio" name="gameType" id="gameType" value="3" onchange="autoquestion(3)"><span class="label-text"> Basketball</span><br>
-
-                                                        <input type="radio" name="gameType" id="gameType" value="5" onchange="autoquestion(5)"><span class="label-text"> Tennis</span><br>
-                                                        <input type="radio" name="gameType" id="gameType" value="6" onchange="autoquestion(6)"><span class="label-text"> Table Tennis</span>
-                                                        <br>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div id="autoquestion" style="max-height:200px;overflow-y:scroll"> -->
-
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">B Team</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="B_team" name="B_team" rows="4" placeholder="Enter  B Team Name">
+                                            <span><input type="hidden" id="color_b" name="color_b" class="form-control" placeholder="Team Color"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">Bet Statement</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" id="title" name="title" rows="4" placeholder="Enter Bet Statement">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">Start Date</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" id="date" name="date" id="demoDate" type="text" placeholder="Select Date"></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">Match Status</label>
+                                        <div class="col-md-8">
+                                            <!--Radio Button Markup-->
+                                            <div class="">
+                                                <label>
+                                                    <input type="radio" name="status" id="status" value="1"><span class="label-text"> Live</span><br>
+                                                    <input type="radio" name="status" id="status" value="2"><span class="label-text"> Upcoming</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3">Match Type</label>
+                                        <div class="col-md-8">
+                                            <!--Radio Button Markup-->
+                                            <div class="">
+                                                <label>
+                                                    <input type="radio" name="gameType" id="gameType" value="1" onchange="autoquestion(1)"><span class="label-text"> FootBall</span><br>
+                                                    <input class="gameTypec" type="radio" name="gameType" id="gameType" value="2" onchange="autoquestion(2)"><span class="label-text"> Cricket</span><br>
+                                                    <input type="radio" name="gameType" id="gameType" value="3" onchange="autoquestion(3)"><span class="label-text"> Basketball</span><br>
+
+                                                    <input type="radio" name="gameType" id="gameType" value="5" onchange="autoquestion(5)"><span class="label-text"> Tennis</span><br>
+                                                    <input type="radio" name="gameType" id="gameType" value="6" onchange="autoquestion(6)"><span class="label-text"> Table Tennis</span>
+                                                    <br>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
                                     <div class="form-group row hiddenOp" style="display: none">
                                         <label class="control-label col-md-3">Match Status</label>
                                         <div class="col-md-8">
@@ -164,16 +160,17 @@ $leagues = DB::table('leagues')->select('id', 'name')->get();
                                     </div>
 
 
+                                </div>
 
-                            </div>
-                            </form>
-                            <div class="modal-footer">
 
-                                <a href="bettingPanel.php">
-                                    <button>Close</button>
-                                </a>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                </div>
+
                             </div>
                         </div>
+
                     </div>
                 </div> <!-- end Modal -->
 
@@ -1080,7 +1077,7 @@ $leagues = DB::table('leagues')->select('id', 'name')->get();
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="js/plugins/select2.min.js"></script>
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="js/betAction.js"></script>
+<script type="text/javascript" src="js/betAction.js?ver=1.0.0"></script>
 <script>
     $(function() {
 
@@ -1223,9 +1220,3 @@ if (isset($_POST['waitBettingquestion'])) {
         }
     }
 </script>
-
-
-<?php
-$dt = new DateTime('now');
-
-?>
