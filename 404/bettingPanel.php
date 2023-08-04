@@ -1,16 +1,21 @@
+
+
 <?php
 
 use App\Betting\DB;
 
 include './header.php';
+
+printf('<link rel="stylesheet" type="text/css" href="css/betPanel.css">
+<link rel="stylesheet" type="text/css" href="css/loader.css">');
+
 include './side.php';
 include 'db.php';
 
 $leagues = DB::table('leagues')->select('id', 'name')->get();
 
 ?>
-<link rel="stylesheet" type="text/css" href="css/betPanel.css">
-<link rel="stylesheet" type="text/css" href="css/loader.css">
+
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -1065,19 +1070,19 @@ $leagues = DB::table('leagues')->select('id', 'name')->get();
     });
 </script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="js/plugins/pace.min.js"></script>
+<!-- <script src="js/plugins/pace.min.js"></script> -->
 
 <!-- Page specific javascripts-->
 
 
 <!-- won-->
 <!-- The javascript plugin to display page loading on top-->
-<script src="js/plugins/pace.min.js"></script>
+<!-- <script src="js/plugins/pace.min.js"></script> -->
 <!-- Page specific javascripts-->
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="js/plugins/select2.min.js"></script>
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="js/betAction.js?ver=1.0.0"></script>
+<script type="text/javascript" src="js/betAction.js?ver=1.0.1"></script>
 <script>
     $(function() {
 

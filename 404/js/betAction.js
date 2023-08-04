@@ -169,49 +169,35 @@ $(document).on('click', '#addMatchSubmit', function (event) {
             $("#liveMatchFetch").load('betLiveContent.php');
             $("#upcomingContent").load('upcomingMatch.php');
         },
-        error: function(error){
-            console.log(error);
+        error: function (error) {
+            $('#addMatchSuccess').html(error.responseText);
         }
     });
 
 });
+
+
 $(document).on('click', '#addMatchSubmitDefault', function (event) {
     event.preventDefault();
     var A_team = $("#A_team").val();
     var B_team = $("#B_team").val();
     var title = $('#title').val();
     var date = $('#date').val();
-    var time = $("#selecttime").val();
-    var enddate = $("#enddate").val();
-    var end_time = $("#selecttime_end").val();
+
     var status = $("#status:checked").val();
 
     var gameType = $("#gameType:checked").val();
-    var addMatchDefault = 1;
-    if ($("input:radio[id='status2']").is(":checked")) {
-        var status2 = $("#status2:checked").val();
-
-    } else {
-        var status2 = 0;
-
-    }
+    
     $.ajax({
         method: "POST",
-        url: "betPanelDataFetch.php",
+        url: "action/bettingPanel/AddMatchWithDefaultQuestion.php",
         data: {
             A_team: A_team,
             B_team: B_team,
             title: title,
             date: date,
-            time: time,
-            enddate: enddate,
-            end_time: end_time,
             status: status,
             gameType: gameType,
-            status2: status2,
-            addMatchDefault: addMatchDefault
-            //end_time:end_time
-
         },
         success: function (data) {
 
@@ -219,6 +205,11 @@ $(document).on('click', '#addMatchSubmitDefault', function (event) {
 
             $("#liveMatchFetch").load('betLiveContent.php');
             $("#upcomingContent").load('upcomingMatch.php');
+        },
+
+        error: function (error) {
+
+            $("#addMatchSuccess").html(error.responseText);
         }
     });
 
@@ -1300,6 +1291,8 @@ $(document).on('click', '#addMatchSubmitLea', function (event) {
         }
     });
 });
+
+
 $(document).on('click', '#addMatchSubmitDefaultLea', function (event) {
     event.preventDefault();
     var league = $('#league').val();
@@ -1310,15 +1303,10 @@ $(document).on('click', '#addMatchSubmitDefaultLea', function (event) {
     var status = $("#statusLea:checked").val();
 
     var gameType = $("#gameTypeLea:checked").val();
-    var addMatchDefaultLea = 1;
-    if ($("input:radio[id='status2']").is(":checked")) {
-        var status2 = $("#status2Lea:checked").val();
-    } else {
-        var status2 = 0;
-    }
+    
     $.ajax({
         method: "POST",
-        url: "betPanelDataFetch.php",
+        url: "action/bettingPanel/AddMatchWithDefaultQuestionByLeague.php",
         data: {
             league: league,
             A_team: A_team,
@@ -1327,13 +1315,17 @@ $(document).on('click', '#addMatchSubmitDefaultLea', function (event) {
             date: date,
             status: status,
             gameType: gameType,
-            status2: status2,
-            addMatchDefaultLea: addMatchDefaultLea
         },
+
         success: function (data) {
             $("#addMatchSuccessLea").html(data);
             $("#liveMatchFetch").load('betLiveOptionAuto.php');
+        },
+
+        error: function (error) {
+            $("#addMatchSuccessLea").html(error.responseText);
         }
+
     });
 
 });
