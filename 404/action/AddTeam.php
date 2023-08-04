@@ -1,6 +1,6 @@
 <?php
 
-use Riazul\Riaz\DB;
+use App\Betting\DB;
 
 include '../auth_check.php';
 

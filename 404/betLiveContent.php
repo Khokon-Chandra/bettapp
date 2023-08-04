@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once "../autoload.php";
+
 if (isset($_COOKIE['adminPanel'])) {
 
     $adminId = $_COOKIE['adminId'];
@@ -26,7 +28,7 @@ if ($resultBettingTitle) {
         $i++;
         $query = "SELECT `id` FROM `hiddenmatch` WHERE adminId='$adminId' and matchId='$bettingTitle[id]'";
         if (!($db->select($query))) {
-            ?>
+?>
             <!-- Modal -->
 
 
@@ -35,432 +37,427 @@ if ($resultBettingTitle) {
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                   <br/>
+                    <br />
                     <div class="panel-heading" role="tab" id="headingOne<?php echo $bettingTitle['id'] ?>one">
                         <h4 class="panel-title">
-                          
+
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?php echo $bettingTitle['id'] ?>one" aria-expanded="false" aria-controls="collapseOne<?php echo $bettingTitle['id'] ?>one">
-                                <?php 
+                                <?php
                                 if (strtotime($bettingTitle['dateend']) <= time()) {
-echo '<div style="border:1px solid red;background:yellow;color:red;padding:4px;text-align:center;margin-bottom:4px;">End Time</div>';
-} else {
-echo '<div style="border:1px solid green;background:yellow;color:green;padding:4px;text-align:center;margin-bottom:4px;">Running Time</div>';
-}
-                                if ($bettingTitle['cancel'] == 1)
-                                {
-                                
-                                
+                                    echo '<div style="border:1px solid red;background:yellow;color:red;padding:4px;text-align:center;margin-bottom:4px;">End Time</div>';
+                                } else {
+                                    echo '<div style="border:1px solid green;background:yellow;color:green;padding:4px;text-align:center;margin-bottom:4px;">Running Time</div>';
+                                }
+                                if ($bettingTitle['cancel'] == 1) {
+
+
                                 ?>
-                                <img style="width:40px;" src="fonts/886065d49e.png"/><span style='color:red;font-size:22px;'>Canceled</span>
+                                    <img style="width:40px;" src="fonts/886065d49e.png" /><span style='color:red;font-size:22px;'>Canceled</span>
                                 <?php  } ?>
                                 <?php
                                 if ($bettingTitle['gameType'] == 1) {
-                                    ?>
-                                <img src="../img/1393757333.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                   <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
- <button class="btn btn-primary  btn-sm scoreM" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#scoreModal">Score(<?php echo $bettingTitle['liveScore'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
-                                 
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
+                                ?>
+                                    <img src="../img/1393757333.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                        <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                        <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                        <button class="btn btn-primary  btn-sm scoreM" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#scoreModal">Score(<?php echo $bettingTitle['liveScore'] ?>) </button>
+                                        <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                        <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
 
                                         <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
-
-                                        <?php
-                                    }
-                                    ?>
-
-
-
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
-
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
+                                        if ($bettingTitle['showStatus'] == 1) {
                                         ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
 
                                         <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
+                                        } else {
+                                        ?>
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
 
                                         <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
+                                        }
+                                        ?>
 
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
+
+
+                                        <?php
+                                        if ($bettingTitle['hide'] == 1) {
+                                        ?>
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
+
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
+
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php
+                                        if ($bettingTitle['ariaHide'] == 1) {
+                                        ?>
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
+
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
+
+                                        <?php
+                                        }
+                                        ?>
+                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+
+                                        || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
 
 
                                     <?php
                                 } else if ($bettingTitle['gameType'] == 2) {
                                     ?>
-                                    <img src="../img/ka-pl.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
-                                     <button class="btn btn-primary  btn-sm scoreM" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#scoreModal">Score(<?php echo $bettingTitle['liveScore'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
+                                        <img src="../img/ka-pl.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                            <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                            <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                            <button class="btn btn-primary  btn-sm scoreM" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#scoreModal">Score(<?php echo $bettingTitle['liveScore'] ?>) </button>
+                                            <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                            <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
 
 
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
+                                            <?php
+                                            if ($bettingTitle['showStatus'] == 1) {
+                                            ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
 
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
+
+                                            <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            if ($bettingTitle['hide'] == 1) {
+                                            ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
+
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
+
+                                            <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            if ($bettingTitle['ariaHide'] == 1) {
+                                            ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
+
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
+
+                                            <?php
+                                            }
+                                            ?>
+                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+                                            || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
                                         <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
-
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
+                                    } else if ($bettingTitle['gameType'] == 3) {
                                         ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
-
-                                        <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
-                                    <?php
-                                }else if ($bettingTitle['gameType'] == 3) {
-                                    ?>
-                                    <img src="../img/ka-pl.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
+                                            <img src="../img/ka-pl.png" width="25px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                                <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                                <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                                <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                                <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
 
 
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
+                                                <?php
+                                                if ($bettingTitle['showStatus'] == 1) {
+                                                ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
 
-                                        <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($bettingTitle['hide'] == 1) {
+                                                ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
 
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
-                                        ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
+                                                <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($bettingTitle['ariaHide'] == 1) {
+                                                ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
 
-                                        <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
-                                    <?php
-                                }
-                                else if ($bettingTitle['gameType'] == 4) {
-                                    ?>
-                                    <img src="../img/boxing.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
-
-
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
-
-                                        <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
-
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
-                                        ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
-
-                                        <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
-                                    <?php
-                                }
-                                else if ($bettingTitle['gameType'] == 5) {
-                                    ?>
-                                    <img src="../img/tenis.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
+                                                <?php
+                                                }
+                                                ?>
+                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+                                                || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
+                                            <?php
+                                        } else if ($bettingTitle['gameType'] == 4) {
+                                            ?>
+                                                <img src="../img/boxing.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
 
 
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
+                                                    <?php
+                                                    if ($bettingTitle['showStatus'] == 1) {
+                                                    ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
 
-                                        <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if ($bettingTitle['hide'] == 1) {
+                                                    ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
 
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
-                                        ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if ($bettingTitle['ariaHide'] == 1) {
+                                                    ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
 
-                                        <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
-                                    <?php
-                                }
-                                else if ($bettingTitle['gameType'] == 6) {
-                                    ?>
-                                    <img src="../img/tabletennis.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
-
-
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
-
-                                        <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
-
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
-                                        ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
-
-                                        <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
-
-                                        <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
-                                    <?php
-                                }
-                                else if ($bettingTitle['gameType'] == 7) {
-                                    ?>
-                                    <img src="../img/badminton.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
-                                    <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
-                                    <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
-                                    <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
-                                    <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+                                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
+                                                <?php
+                                            } else if ($bettingTitle['gameType'] == 5) {
+                                                ?>
+                                                    <img src="../img/tenis.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                                        <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                                        <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                                        <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                                        <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
 
 
-                                    <?php
-                                    if ($bettingTitle['showStatus'] == 1) {
-                                        ?>                                                                                                          
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop"  value="Stop">
+                                                        <?php
+                                                        if ($bettingTitle['showStatus'] == 1) {
+                                                        ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
 
-                                        <?php
-                                    } else {
-                                        ?>                                             
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive"  value="Active">
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['hide'] == 1) {
-                                        ?>                                                                                                      
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide"  value="hide">
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if ($bettingTitle['hide'] == 1) {
+                                                        ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
 
-                                        <?php
-                                    } else {
-                                        ?>                                                                                                   
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow"  value="show">
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    if ($bettingTitle['ariaHide'] == 1) {
-                                        ?>
-                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide"  value="aria hide">
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if ($bettingTitle['ariaHide'] == 1) {
+                                                        ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
 
-                                        <?php
-                                    } else {
-                                        ?>  
-                                        <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow"  value="aria show">
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
 
-                                        <?php
-                                    }
-                                    ?>
-                                    <input type="submit"  id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel"  value="hide from panel">
-                                    || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
-                                    <?php
-                                }
-                                ?>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+                                                        || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
+                                                    <?php
+                                                } else if ($bettingTitle['gameType'] == 6) {
+                                                    ?>
+                                                        <img src="../img/tabletennis.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                                            <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                                            <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                                            <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                                            <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
 
-                                <?php
-                                $query = "SELECT * FROM `bet` where matchId='$bettingTitle[id]'";
-                                $Count = $db->select($query);
 
-                                if ($Count) {
-                                    if ($Count->num_rows > 0) {
-                                        ?>
-                                        <span style="background: #DD5145;color: #ececec;margin-left: 10px;" class="badge  text-right" > <?php echo $Count->num_rows; ?></span>
-                                        <?php
-                                    }
-                                }
-                                ?> 
-                                <?php
-                                $query = "SELECT sum(betAmount) as total FROM `bet` WHERE matchId='$bettingTitle[id]'";
-                                $result = $db->select($query);
-                                if ($result) {
-                                    $fetch = $result->fetch_assoc();
-                                    $total = $fetch['total'];
-                                    ?>
-                                    <span style="margin-left: 10px;" class="badge badge-info text-right" > <?php echo $total; ?></span>
-                                    <?php
-                                }
-                                ?>
+                                                            <?php
+                                                            if ($bettingTitle['showStatus'] == 1) {
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
+
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
+
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                            if ($bettingTitle['hide'] == 1) {
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
+
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
+
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                            if ($bettingTitle['ariaHide'] == 1) {
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
+
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
+
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+                                                            || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
+                                                        <?php
+                                                    } else if ($bettingTitle['gameType'] == 7) {
+                                                        ?>
+                                                            <img src="../img/badminton.png" width="30px;">&nbsp; <?php echo $bettingTitle['A_team'] ?> <> <?php echo $bettingTitle['B_team'] ?> ,<?php echo $bettingTitle['title'] ?> || <?php echo substr_replace($bettingTitle['date'], "@", 12, 0) ?> || End Time <span style="color: yellow;">- [<?php echo $bettingTitle['dateend'] ?>]</span>
+                                                                <button class="btn btn-primary  btn-sm matchActionMenu" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchActionMenu">action </button>
+                                                                <button class="btn btn-info  btn-sm matchActiondefault" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#default">d-hidden</button>
+                                                                <button class="btn btn-primary  btn-sm limitMatch" href="" id="<?php echo $bettingTitle['id'] ?>" data-toggle="modal" data-target="#limitMatch">Limit(<?php echo $bettingTitle['limitedAmount'] ?>) </button>
+                                                                <button class="btn btn-primary  btn-sm matchWatting" href="" data-toggle="modal" id="<?php echo $bettingTitle['id'] ?>" data-target="#matchWatting">Wait(<?php echo $bettingTitle['waittingTime'] ?>) </button>
+
+
+                                                                <?php
+                                                                if ($bettingTitle['showStatus'] == 1) {
+                                                                ?>
+                                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchStop" value="Stop">
+
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchActive" value="Active">
+
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                                if ($bettingTitle['hide'] == 1) {
+                                                                ?>
+                                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHide" value="hide">
+
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchShow" value="show">
+
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                                if ($bettingTitle['ariaHide'] == 1) {
+                                                                ?>
+                                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" name="bettingTitleAriaHide" class="btn btn-primary  btn-sm matchAriaHide" value="aria hide">
+
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-danger  btn-sm matchAriaShow" value="aria show">
+
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                <input type="submit" id="<?php echo $bettingTitle['id'] ?>" class="btn btn-primary  btn-sm matchHideFromPanel" value="hide from panel">
+                                                                || <span>operator(<?php echo $bettingTitle['user'] ?>)</span>
+                                                            <?php
+                                                        }
+                                                            ?>
+
+                                                            <?php
+                                                            $query = "SELECT * FROM `bet` where matchId='$bettingTitle[id]'";
+                                                            $Count = $db->select($query);
+
+                                                            if ($Count) {
+                                                                if ($Count->num_rows > 0) {
+                                                            ?>
+                                                                    <span style="background: #DD5145;color: #ececec;margin-left: 10px;" class="badge  text-right"> <?php echo $Count->num_rows; ?></span>
+                                                            <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                            $query = "SELECT sum(betAmount) as total FROM `bet` WHERE matchId='$bettingTitle[id]'";
+                                                            $result = $db->select($query);
+                                                            if ($result) {
+                                                                $fetch = $result->fetch_assoc();
+                                                                $total = $fetch['total'];
+                                                            ?>
+                                                                <span style="margin-left: 10px;" class="badge badge-info text-right"> <?php echo $total; ?></span>
+                                                            <?php
+                                                            }
+                                                            ?>
 
                             </a>
 
                         </h4>
-                        
+
                     </div>
-                    
+
                     <?php
                     if ($bettingTitle['ariaHide'] == 1) {
-                        ?>
-                    
+                    ?>
+
                         <div id="collapseOne<?php echo $bettingTitle['id'] ?>one" class="panel-collapse  " role="tabpanel" aria-labelledby="headingOne<?php echo $bettingTitle['id'] ?>one">
-                            
+
                             <div class="panel-body" style="">
 
                                 <!-- second label -->
@@ -473,17 +470,17 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
                                         while ($bettingSubTitle = $resultBettingSubTitle->fetch_assoc()) {
 
                                             $i++;
-                                            ?>
+                                    ?>
 
 
 
                                             <div class="panel panel-default">
-                                                
+
                                                 <div class="panel-heading" role="tab" id="headingOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
-                                                    
+
                                                     <h4 class="panel-title">
-                                                        <a  style="background:#E7E7E7 !important;color: #212529;padding: 1%;border-bottom: 1px solid #979797;" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $bettingTitle['id'] ?>one" href="#collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>" aria-expanded="false" aria-controls="collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
-                                                            <?php echo $bettingSubTitle['title'] ?> 
+                                                        <a style="background:#E7E7E7 !important;color: #212529;padding: 1%;border-bottom: 1px solid #979797;" role="button" data-toggle="collapse" data-parent="#accordion<?php echo $bettingTitle['id'] ?>one" href="#collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>" aria-expanded="false" aria-controls="collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
+                                                            <?php echo $bettingSubTitle['title'] ?>
 
                                                             <button class="btn btn-primary  btn-sm questionActionMenu" href="" data-toggle="modal" id="<?php echo $bettingSubTitle['id'] ?>" data-target="#questionActionMenu">action </button>
 
@@ -494,52 +491,52 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
 
                                                             <?php
                                                             if ($bettingSubTitle['showStatus'] == 1) {
-                                                                ?>                                                                                                          
-                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-primary  btn-sm questionStop"  value="Stop">
+                                                            ?>
+                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-primary  btn-sm questionStop" value="Stop">
 
-                                                                <?php
+                                                            <?php
                                                             } else {
-                                                                ?>
+                                                            ?>
 
-                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-danger  btn-sm questionActive"  value="Active">
+                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-danger  btn-sm questionActive" value="Active">
 
-                                                                <?php
+                                                            <?php
                                                             }
                                                             ?>
 
                                                             <?php
                                                             if ($bettingSubTitle['hide'] == 1) {
-                                                                ?>
+                                                            ?>
 
 
-                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-primary  btn-sm questionHide"  value="hide">
+                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-primary  btn-sm questionHide" value="hide">
 
-                                                                <?php
+                                                            <?php
                                                             } else {
-                                                                ?>
+                                                            ?>
 
 
-                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-danger  btn-sm questionShow"  value="show">
+                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-danger  btn-sm questionShow" value="show">
 
-                                                                <?php
+                                                            <?php
                                                             }
                                                             ?>
 
                                                             <?php
                                                             if ($bettingSubTitle['ariaHide'] == 1) {
-                                                                ?>
+                                                            ?>
 
 
-                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>"  class="btn btn-primary  btn-sm questionhAriaHide"  value="aria hide">
+                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-primary  btn-sm questionhAriaHide" value="aria hide">
 
-                                                                <?php
+                                                            <?php
                                                             } else {
-                                                                ?>
+                                                            ?>
 
 
-                                                                <input type="submit"  id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-danger  btn-sm questionAriaShow"  value="aria show">
+                                                                <input type="submit" id="<?php echo $bettingSubTitle['id'] ?>" class="btn btn-danger  btn-sm questionAriaShow" value="aria show">
 
-                                                                <?php
+                                                            <?php
                                                             }
                                                             ?>
 
@@ -550,24 +547,24 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
 
                                                             if ($Count) {
                                                                 if ($Count->num_rows > 0) {
-                                                                    ?>
-                                                                    <span style="background: #DD5145;color: #ececec;margin-left: 10px;" class="badge  text-right" > <?php echo $Count->num_rows; ?></span>
-                                                                    <?php
+                                                            ?>
+                                                                    <span style="background: #DD5145;color: #ececec;margin-left: 10px;" class="badge  text-right"> <?php echo $Count->num_rows; ?></span>
+                                                            <?php
                                                                 }
                                                             }
-                                                            ?> 
-                                                            <?php 
-                                                            include'db.php';
-                                                            $id=$bettingTitle['id'];
-                                                            $q="select distinct(betstatusby) from abbet where matchId='$id' and betStatus='1' and betTitleId='$bettingSubTitle[id]'";
-                                                             $run=mysqli_query($con,$q);
-                                                             while($row=mysqli_fetch_array($run))
-                                                             {
+                                                            ?>
+                                                            <?php
+                                                            include 'db.php';
+                                                            $id = $bettingTitle['id'];
+                                                            // $q="select distinct(betstatusby) from abbet where matchId='$id' and betStatus='1' and betTitleId='$bettingSubTitle[id]'";
+                                                            //  $run=mysqli_query($con,$q);
+                                                            //  while($row=mysqli_fetch_array($run))
+                                                            //  {
 
-                                                                 echo @$row[0];
-                                                             }
-                                                            
-                                                             ?>
+                                                            //      echo @$row[0];
+                                                            //  }
+
+                                                            ?>
                                                         </a>
 
                                                     </h4>
@@ -575,7 +572,7 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
                                                 </div>
                                                 <?php
                                                 if ($bettingSubTitle['ariaHide'] == 1) {
-                                                    ?>
+                                                ?>
 
                                                     <div id="collapseOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>" class="panel-collapse  " role="tabpanel" aria-labelledby="headingOne<?php echo $bettingTitle['id'] ?>one<?php echo $bettingSubTitle['id'] ?>">
                                                         <div class="panel-body-2" style="padding: 10px;margin-bottom: 5px;">
@@ -603,7 +600,7 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
                                                                                 </thead>
                                                                                 <tbody>
                                                                                     <?php
-                                                                                       $c=0;
+                                                                                    $c = 0;
                                                                                     $ansId = 0;
                                                                                     $totalBetAmount = 0;
                                                                                     $totalReturnAmount = 0;
@@ -614,9 +611,9 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
                                                                                         while ($BettingSubTitleOption = $resultBettingSubTitleOption->fetch_assoc()) {
 
                                                                                             $i++;
-                                                                                            ?>
+                                                                                    ?>
                                                                                             <tr>
-                                                                                                <th > <?php echo $BettingSubTitleOption['title'] ?> </th>
+                                                                                                <th> <?php echo $BettingSubTitleOption['title'] ?> </th>
                                                                                                 <td> <a href="" class="btn btn-primary updateAnsRate" tt="<?php echo $BettingSubTitleOption['title'] ?>" data-toggle="modal" id="<?php echo $BettingSubTitleOption['id'] ?>" data-target="#updateAnsRate" onclick="loadrate('<?php echo $BettingSubTitleOption['amount'] ?>')"> <?php echo $BettingSubTitleOption['amount'] ?></a> </td>
                                                                                                 <?php
                                                                                                 $query = "SELECT * FROM `bet` where betId='$BettingSubTitleOption[id]' and action=0";
@@ -629,19 +626,19 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
                                                                                                         $sumReturn = 0;
 
                                                                                                         foreach ($Count as $data) {
-                                                                                                            $sum+=$data['betAmount'];
-                                                                                                            $sumReturn+=$data['returnAmount'];
+                                                                                                            $sum += $data['betAmount'];
+                                                                                                            $sumReturn += $data['returnAmount'];
                                                                                                         }
-                                                                                                        $totalBetAmount+=$sum;
-                                                                                                        $totalReturnAmount+=$sum * $BettingSubTitleOption['amount'];
-                                                                                                        ?>
+                                                                                                        $totalBetAmount += $sum;
+                                                                                                        $totalReturnAmount += $sum * $BettingSubTitleOption['amount'];
+                                                                                                ?>
                                                                                                         <td>
                                                                                                             <?php echo $Count->num_rows; ?>
                                                                                                         </td>
                                                                                                         <td><?php echo $sum; ?></td>
                                                                                                         <td><?php echo $sumReturn; ?></td>
 
-                                                                                                        <?php
+                                                                                                    <?php
                                                                                                     }
                                                                                                 } else {
                                                                                                     ?>
@@ -650,71 +647,67 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
                                                                                                     </td>
                                                                                                     <td>0</td>
                                                                                                     <td>0</td>
-                                                                                                    <?php
+                                                                                                <?php
                                                                                                 }
                                                                                                 ?>
                                                                                                 <td>
-                                                                                              
+
+                                                                                                    <?php
+
+                                                                                                    $query = "SELECT * FROM `bet` where betId='$BettingSubTitleOption[id]'";
+                                                                                                    $resultUser = $db->select($query);
+                                                                                                    if ($resultUser) {
+
+
+                                                                                                        $user = $resultUser->fetch_assoc();
+                                                                                                        if ($user['betStatus'] == 1) {
+
+                                                                                                    ?>
+                                                                                                            <a style="color: #fff" class="btn btn-sm btn-success ">
+                                                                                                                wined
+                                                                                                            </a>
+
                                                                                                         <?php
-                                                                                                      
-                                                                                                        $query = "SELECT * FROM `bet` where betId='$BettingSubTitleOption[id]'";
-                                                                                                        $resultUser = $db->select($query);
-                                                                                                        if ($resultUser) {
-                                                                                                                       
-
-                                                                                                            $user = $resultUser->fetch_assoc();
-                                                                                                            if ($user['betStatus'] == 1) {
-                                                                                                                
-                                                                                                                ?>
-                                                                                                                <a style="color: #fff"  class="btn btn-sm btn-success ">
-                                                                                                                    wined
-                                                                                                                </a>
-
-                                                                                                                <?php
-                                                                                                                 $c=1;
-                                                                                                                
-                                                                                                            } else if ($user['betStatus'] == 2) {
-                                                                                                                ?>
-                                                                                                                <a id="w" href="#" onclick="return confirm('Are you sure ?')" style="color: #fff"  class="btn btn-sm btn-danger ">
-                                                                                                                    lose
-                                                                                                                </a>                                                                                                           
-                                                                                                                <?php
-                                                                                                            } else{
-                                                                                                                ?>
-                                                                                                                <a onclick="declare_win(<?php echo $bettingTitle['id']; ?>,<?php echo $bettingSubTitle['id']; ?>,<?php echo $BettingSubTitleOption['id']; ?>)" style="color: #fff"  class="btn btn-sm btn-primary ">
-                                                                                                                    win
-                                                                                                                </a>                                                                                                             
-                                                                                                                <?php
-                                                                                                            }
+                                                                                                            $c = 1;
+                                                                                                        } else if ($user['betStatus'] == 2) {
+                                                                                                        ?>
+                                                                                                            <a id="w" href="#" onclick="return confirm('Are you sure ?')" style="color: #fff" class="btn btn-sm btn-danger ">
+                                                                                                                lose
+                                                                                                            </a>
+                                                                                                        <?php
                                                                                                         } else {
-                                                                                                         $q = "SELECT * FROM `bet` where matchId='$bettingTitle[id]' and betStatus='1' and betTitleId='$bettingSubTitle[id]'";
+                                                                                                        ?>
+                                                                                                            <a onclick="declare_win(<?php echo $bettingTitle['id']; ?>,<?php echo $bettingSubTitle['id']; ?>,<?php echo $BettingSubTitleOption['id']; ?>)" style="color: #fff" class="btn btn-sm btn-primary ">
+                                                                                                                win
+                                                                                                            </a>
+                                                                                                        <?php
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        $q = "SELECT * FROM `bet` where matchId='$bettingTitle[id]' and betStatus='1' and betTitleId='$bettingSubTitle[id]'";
                                                                                                         $r = $db->select($q);
                                                                                                         if ($r) {
-                                                                                                            $c=1;
+                                                                                                            $c = 1;
                                                                                                             $user = $r->fetch_assoc();
                                                                                                         }
-                                                                                                           // echo $c;
-                                                                                                            if($c==1)
-                                                                                                            {
+                                                                                                        // echo $c;
+                                                                                                        if ($c == 1) {
 
-                                                                                                            ?>
+                                                                                                        ?>
 
-                                                                                                            <a style="color: #fff"  class="btn btn-sm btn-danger ">
-                                                                                                                    lose
-                                                                                                                </a>                                                                                                              
-                                                                                                            <?php
-                                                                                                        }
-                                                                                                        else
-                                                                                                        {
-                                                                                                            ?>
-                                                                                                            <a id="w" onclick="declare_win(<?php echo $bettingTitle['id']; ?>,<?php echo $bettingSubTitle['id']; ?>,<?php echo $BettingSubTitleOption['id']; ?>)" style="color: #fff"  class="btn btn-sm btn-primary ">
-                                                                                                               win
-                                                                                                            </a> 
-                                                                                                            <?php
+                                                                                                            <a style="color: #fff" class="btn btn-sm btn-danger ">
+                                                                                                                lose
+                                                                                                            </a>
+                                                                                                        <?php
+                                                                                                        } else {
+                                                                                                        ?>
+                                                                                                            <a id="w" onclick="declare_win(<?php echo $bettingTitle['id']; ?>,<?php echo $bettingSubTitle['id']; ?>,<?php echo $BettingSubTitleOption['id']; ?>)" style="color: #fff" class="btn btn-sm btn-primary ">
+                                                                                                                win
+                                                                                                            </a>
+                                                                                                    <?php
                                                                                                         }
                                                                                                     }
-                                                                                                        ?>
-                                                                                            
+                                                                                                    ?>
+
 
 
                                                                                                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -724,109 +717,108 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
 
                                                                                                         <?php
                                                                                                         if ($adminType == 1) {
-                                                                                                            ?>
+                                                                                                        ?>
                                                                                                             <a class="dropdown-item" href="searchEngine?ans=<?php echo $BettingSubTitleOption['id'] ?>">user action</a>
-                                                                                                            <?php
-                                                                                                        }
-                                                                                                        else if ($adminType == 2) {
-                                                                                                            ?>
+                                                                                                        <?php
+                                                                                                        } else if ($adminType == 2) {
+                                                                                                        ?>
                                                                                                             <a class="dropdown-item" href="secondSearchEngine?ans=<?php echo $BettingSubTitleOption['id'] ?>">user action</a>
-                                                                                                            <?php
+                                                                                                        <?php
                                                                                                         }
                                                                                                         ?>
                                                                                                         <?php
                                                                                                         if ($BettingSubTitleOption['showStatus'] == 1) {
-                                                                                                            ?>
+                                                                                                        ?>
                                                                                                             <button style="cursor: pointer;color: red" class="dropdown-item ansStop" id="<?php echo $BettingSubTitleOption['id'] ?>">Stop</button>
 
-                                                                                                            <?php
+                                                                                                        <?php
                                                                                                         } else {
-                                                                                                            ?>
+                                                                                                        ?>
                                                                                                             <button style="cursor: pointer" class="dropdown-item ansActive" id="<?php echo $BettingSubTitleOption['id'] ?>">Active</button>
-                                                                                                            <?php
+                                                                                                        <?php
                                                                                                         }
                                                                                                         ?>
                                                                                                         <?php
                                                                                                         if ($BettingSubTitleOption['hide'] == 1) {
-                                                                                                            ?>
+                                                                                                        ?>
 
                                                                                                             <button style="cursor: pointer;color: red" class="dropdown-item ansHide" id="<?php echo $BettingSubTitleOption['id'] ?>">hide</button>
 
-                                                                                                            <?php
+                                                                                                        <?php
                                                                                                         } else {
-                                                                                                            ?>
+                                                                                                        ?>
                                                                                                             <button style="cursor: pointer" class="dropdown-item ansShow" id="<?php echo $BettingSubTitleOption['id'] ?>">Show</button>
-                                                                                                            <?php
+                                                                                                        <?php
                                                                                                         }
                                                                                                         ?>
 
-                                        
+
 
                                                                                                     </div>
-                                                                                                    </div>
+                                                                        </div>
 
 
 
 
-                                                                                                </td>
-                                                                                                <td> <a class="btn btn-primary btn-sm limitAns" href="" data-toggle="modal" id="<?php echo $BettingSubTitleOption['id'] ?>" data-target="#limitAns">Limit (<?php echo $BettingSubTitleOption['limitedAmount'] ?>)</a></td>
+                                                                        </td>
+                                                                        <td> <a class="btn btn-primary btn-sm limitAns" href="" data-toggle="modal" id="<?php echo $BettingSubTitleOption['id'] ?>" data-target="#limitAns">Limit (<?php echo $BettingSubTitleOption['limitedAmount'] ?>)</a></td>
 
-                                                                                            </tr>
-                                                                                            <?php
+                                                                        </tr>
+                                                                <?php
                                                                                         }
                                                                                     }
-                                                                                    ?>
+                                                                ?>
 
 
-                                                                                    <tr>
+                                                                <tr>
 
 
-                                                                                        <th style="border: 0px;"></th>
-                                                                                        <th style="border: 0px;"></th>
-                                                                                        <th >
-                                                                                            <a href="betPanelAction.php?restart=1 && match=<?php echo $bettingTitle['id']; ?> && que=<?php echo $bettingSubTitle['id']; ?>" onclick="return confirm('Are you sure ?')" style="color: #fff"  class="btn btn-sm btn-danger ">restart</a> 
-                                                                                        </th>
-                                                                                        <th scope="col">Total=<?php echo $totalBetAmount; ?></th>
-                                                                                        <th style="border: 0px;"></th>
-                                                                                        <th style="border: 0px;"></th>
-                                                                                    </tr>
+                                                                    <th style="border: 0px;"></th>
+                                                                    <th style="border: 0px;"></th>
+                                                                    <th>
+                                                                        <a href="betPanelAction.php?restart=1 && match=<?php echo $bettingTitle['id']; ?> && que=<?php echo $bettingSubTitle['id']; ?>" onclick="return confirm('Are you sure ?')" style="color: #fff" class="btn btn-sm btn-danger ">restart</a>
+                                                                    </th>
+                                                                    <th scope="col">Total=<?php echo $totalBetAmount; ?></th>
+                                                                    <th style="border: 0px;"></th>
+                                                                    <th style="border: 0px;"></th>
+                                                                </tr>
 
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
+                                                                </tbody>
+                                                                </table>
                                                                     </div>
                                                                 </div>
-
-
-
-
-
-
                                                             </div>
 
+
+
+
+
+
                                                         </div>
+
                                                     </div>
-                                                    <?php
-                                                }
-                                                ?>
                                             </div>
-                                            <?php
+                                        <?php
+                                                }
+                                        ?>
+                                </div>
+                        <?php
                                         }
                                     }
-                                    ?>
+                        ?>
 
 
-
-                                </div>
 
                             </div>
+
                         </div>
-                        <?php
-                    }
-                    ?>
                 </div>
-            </div>
             <?php
+                    }
+            ?>
+            </div>
+            </div>
+    <?php
         }
     }
 } else {
@@ -834,36 +826,37 @@ echo '<div style="border:1px solid green;background:yellow;color:green;padding:4
     <div class="alert alert-dismissible alert-danger">
         <button class="close" type="button" data-dismiss="alert">×</button><strong>Match not Found !!!</strong>
     </div>
-    <?php
+<?php
 }
 ?>
 <script type="text/javascript">
-    function loadrate(amount)
-    {
-        
+    function loadrate(amount) {
+
         $('#editRateAmount').val(amount);
     }
-	    function declare_win(match,que,ans)
-    {
 
-var result = confirm("Want to declare Winner?");
-if (result) {
- 
-   $.ajax({
-        method: "GET",
-        url: "betPanelAction.php",
-        
-        data: {
-            match:match,que:que,ans:ans
-        },
-        success: function (data) {
-   
-            $("#liveMatchFetch").load('betLiveContent.php');
-            $("#upcomingContent").load('upcomingMatch.php');
+    function declare_win(match, que, ans) {
 
+        var result = confirm("Want to declare Winner?");
+        if (result) {
+
+            $.ajax({
+                method: "GET",
+                url: "betPanelAction.php",
+
+                data: {
+                    match: match,
+                    que: que,
+                    ans: ans
+                },
+                success: function(data) {
+
+                    $("#liveMatchFetch").load('betLiveContent.php');
+                    $("#upcomingContent").load('upcomingMatch.php');
+
+                }
+            });
         }
-    });
-}
-    	
+
     }
 </script>

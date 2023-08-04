@@ -147,6 +147,24 @@ $(document).on('click', '#addMatchSubmit', function (event) {
     var gameType = $("#gameType:checked").val();
     var addMatch = 1;
 
+    console.log({
+        A_team: A_team,
+        color_a:color_a,
+        B_team: B_team,
+        color_b:color_b,
+        title: title,
+        date: date,
+        time: time,
+        enddate: enddate,
+        end_time : end_time,
+        status: status,
+        gameType: gameType,
+        addMatch: addMatch
+
+    });
+
+    return 0;
+
     $.ajax({
         method: "POST",
         url: "betPanelDataFetch.php",
@@ -1240,5 +1258,121 @@ $(document).on('click', '.matchActiondefault', function (event) {
         id: match_id
     });
 
+
+});
+
+
+// Add team by league script
+
+
+
+$("#league").change(function () {
+    var str = "";
+    var name = "";
+    $(this).find('option:selected').each(function() {
+        str = $(this).attr('value');
+        name = $(this).attr('name');
+    });
+    $('#titleLea').val(name);
+    $.ajax({
+        method: "POST",
+        url: "leaguePanel/getLeagueTeam.php",
+        data: {
+            leagueId: str,
+        },
+        success: function (data) {
+            $('.A_teamLea').html(data);
+            $('.B_teamLea').html(data);
+        }
+    });
+});
+$(document).on('click', '#addMatchSubmitLea', function (event) {
+    event.preventDefault();
+    var league = $('#league').val();
+    var A_team = $('#A_teamLea').val();
+    var B_team = $('#B_teamLea').val();
+    var title = $('#titleLea').val();
+    var date = $('#dateLea').val();
+    var status = $("#statusLea:checked").val();
+    var gameType = $("#gameTypeLea:checked").val();
+    var addMatchLea = 1;
+
+    $.ajax({
+        method: "POST",
+        url: "action/bettingPanel/AddMatchByLeague.php",
+        data: {
+            league: league,
+            A_team: A_team,
+            B_team: B_team,
+            title: title,
+            date: date,
+            status: status,
+            gameType: gameType,
+            addMatchLea: addMatchLea
+        },
+        success: function (data) {
+            $('#A_teamLea').val('');
+            $('#B_teamLea').val('');
+            $('#titleLea').val('');
+            $('#dateLea').val('');
+            $("#addMatchSuccessLea").html(data);
+            $("#liveMatchFetch").load('betLiveOptionAuto.php');
+        }
+    });
+});
+$(document).on('click', '#addMatchSubmitDefaultLea', function (event) {
+    event.preventDefault();
+    var league = $('#league').val();
+    var A_team = $("#A_teamLea").val();
+    var B_team = $("#B_teamLea").val();
+    var title = $('#titleLea').val();
+    var date = $('#dateLea').val();
+    var status = $("#statusLea:checked").val();
+
+    var gameType = $("#gameTypeLea:checked").val();
+    var addMatchDefaultLea = 1;
+    if ($("input:radio[id='status2']").is(":checked")) {
+        var status2 = $("#status2Lea:checked").val();
+    } else {
+        var status2 = 0;
+    }
+    $.ajax({
+        method: "POST",
+        url: "betPanelDataFetch.php",
+        data: {
+            league: league,
+            A_team: A_team,
+            B_team: B_team,
+            title: title,
+            date: date,
+            status: status,
+            gameType: gameType,
+            status2: status2,
+            addMatchDefaultLea: addMatchDefaultLea
+        },
+        success: function (data) {
+            $("#addMatchSuccessLea").html(data);
+            $("#liveMatchFetch").load('betLiveOptionAuto.php');
+        }
+    });
+
+});
+$(document).on('click', '.optionRateButt', function (event) {
+    event.preventDefault();
+    var matchId = $(this).attr('id');
+    var position = $(this).attr('position');
+    var positionUpdate = 0;
+    $.ajax({
+        method: "POST",
+        url: "betPanelDataFetchTwo.php",
+        data: {
+            matchId: matchId,
+            position: position,
+            positionUpdate: positionUpdate
+        },
+        success: function (data) {
+            $("#liveMatchFetch").load('betLiveContentAuto.php',{matchId: matchId});
+        }
+    });
 
 });

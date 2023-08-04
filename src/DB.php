@@ -1,6 +1,6 @@
 <?php
 
-namespace Riazul\Riaz;
+namespace App\Betting;
 
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Support\Traits\CapsuleManagerTrait;

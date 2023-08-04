@@ -15,13 +15,13 @@ include './side.php';
         <div class="col-md-3 mb-3">
             <div class="card card-body">
                 <h6>Total User Balance</h6>
-                <h5>3093</h5>
+                <h5>500</h5>
             </div>
         </div>
         <div class="col-md-3 mb-3">
             <div class="card card-body">
                 <h6>Total Gaining Amount</h6>
-                <h5>3093</h5>
+                <h5>500</h5>
             </div>
         </div>
 
@@ -30,21 +30,21 @@ include './side.php';
         <div class="col-md-3 mb-3">
             <div class="card card-body">
                 <h6>Total Sending Amount</h6>
-                <h5>3093</h5>
+                <h5>500</h5>
             </div>
         </div>
 
         <div class="col-md-3 mb-3">
             <div class="card card-body">
                 <h6>Total Saving Amount</h6>
-                <h5>3093</h5>
+                <h5>500</h5>
             </div>
         </div>
 
         <div class="col-md-3 mb-3">
             <div class="card card-body ">
                 <h6>Total S Amount</h6>
-                <h5>3093</h5>
+                <h5>500</h5>
             </div>
         </div>
     </div>
@@ -111,7 +111,7 @@ include './side.php';
 
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h5 class="mb-0">League List</h5>
             <div>
                 <a class="btn btn-success btn-sm" href=""><i class="fa fa-refresh"></i>Refresh</a>
@@ -221,16 +221,14 @@ include './side.php';
             }
         });
     });
-    $(document).on('click', '.leagueMatchDelete', function(event) {
-        event.preventDefault();
-        var leagueMatch_id = $(this).attr('id');
-        var leagueMatchDelete = 0;
+
+    $(document).on('click', '.deleteTeam', function(event) {
+        var team_id = $(this).data('id');
         $.ajax({
             method: "POST",
-            url: "bettingPanelLeagueAction.php",
+            url: "action/DeleteTeam.php",
             data: {
-                leagueMatchDelete: leagueMatchDelete,
-                leagueMatch_id: leagueMatch_id
+                id: team_id
             },
             success: function(data) {
                 $("#liveMatchFetch").load('leagueContent.php');

@@ -6,14 +6,10 @@ include '../auth_check.php';
 
 include '../../autoload.php';
 
-
 $request = $_POST;
 
 try{
-    DB::table('leagues')->insert([
-        'name'=> $request['name'],
-        'created_at' => date('Y-m-d H:s:i')
-    ]);
+    DB::table('teams')->where('id',$request['id'])->delete();
     return "successfully league created";
 }catch(\Exception $error){
     return $error->getCode();

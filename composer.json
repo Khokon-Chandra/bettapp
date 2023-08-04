@@ -6,18 +6,21 @@
         "illuminate/collections": "10.x-dev",
         "illuminate/database": "10.x-dev",
         "illuminate/events": "10.x-dev",
-        "illuminate/http": "10.x-dev"
+        "illuminate/http": "10.x-dev",
+        "illuminate/support": "10.x-dev",
+        "rakit/validation": "dev-master",
+        "illuminate/validation": "10.x-dev"
     },
     "license": "NRC",
     "autoload": {
         "psr-4": {
-            "Riazul\\Riaz\\": "src/"
+            "App\\Betting\\": "src/"
         },
         "files": ["src/Connection.php"]
     },
     "authors": [
         {
-            "name": "riazul"
+            "name": "Betting"
         }
     ],
     "minimum-stability": "dev"
