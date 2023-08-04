@@ -1,102 +1,19 @@
 <?php include './header.php'; ?>
 <?php include './side.php'; ?>
 
-<style>
-    #accordion .panel {
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        /* margin: 0 30px 10px 30px;*/
-        overflow: hidden;
-        position: relative;
-        margin-bottom: -7px !important;
-    }
-
-    #accordion .panel-heading {
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        position: relative;
-    }
-
-    #accordion .panel-title a {
-        display: block;
-        padding: 8px 22px;
-        margin: 0;
-        background: #145C51;
-        font-size: 14px;
-        font-weight: 700;
-
-        color: #fff;
-        border-radius: 0;
-        position: relative;
-    }
-
-
-
-
-    #accordion .panel-body {
-        border: 3px solid #145C51;
-        border-top: none;
-        background: #fff;
-        /* font-size: 15px; */
-        color: #1c2336;
-        line-height: 27px;
-        position: relative;
-        margin-top: -8px !important;
-    }
-
-    #accordion .panel-body-2 {
-
-        border-top: none;
-        background: #fff;
-        /* font-size: 15px; */
-        color: #1c2336;
-        line-height: 27px;
-        position: relative;
-        margin-top: -8px !important;
-    }
-
-    #accordion .panel-body p {
-        padding: 10px;
-    }
-
-    //modal resize
-</style>
+<link rel="stylesheet" href="css/default_setting.css">
 
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-dashboard"></i>Betting Panel</h1>
+            <h1><i class="fa fa-dashboard"></i>Betting Panel (Default Match)</h1>
 
         </div>
 
     </div>
     <div class="row">
         <div class="col-md-12">
-            <?php
-            if (isset($_POST['addBet'])) {
-                $status = 0;
-                $A_team = $_POST['A_team'];
-                $B_team = $_POST['B_team'];
-                $title = $_POST['title'];
-                $date = $_POST['date'];
-                if (isset($_POST['status'])) {
-                    $status = $_POST['status'];
-                }
 
-                $gameType = $_POST['gameType'];
-
-
-                $query = "INSERT INTO `default_match`(`A_team`, `B_team`, `title`, `date`, `status`, `gameType`)"
-                    . " VALUES ('$A_team','$B_team','$title','$date','$status','$gameType')";
-                $resultClubInsert = $db->insert($query);
-
-                if ($resultClubInsert) {
-                } else {
-                }
-            }
-            ?>
             <?php
             if (isset($_POST['addBetSubTitle'])) {
                 $input_field = $_POST['input_field'];
@@ -151,7 +68,10 @@
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="form-horizontal" method="post">
+
+
+                                    <div id="server_message"></div>
+                                    <form id="submitMatch" class="form-horizontal" action="action/defaultQuestion/AddDefaultMatch.php" method="post">
 
                                         <div class="form-group row">
                                             <label class="control-label col-md-3">A Team</label>
@@ -179,6 +99,20 @@
                                             </div>
                                         </div>
 
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-3">Match Type</label>
+                                            <div class="col-md-8">
+                                                <!--Radio Button Markup-->
+                                                <div class="">
+                                                    <label>
+                                                        <input type="radio" name="status" value="1"><span class="radio"> Live</span><br>
+                                                        <input class="radio" type="radio" name="status" value="2"><span class="label-text">Upcomming</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label class="control-label col-md-3">Match Type</label>
                                             <div class="col-md-8">
@@ -197,9 +131,9 @@
                                                 <!--Radio Button Markup-->
                                                 <div class="">
                                                     <label>
-                                                        <input type="radio" name="status" id="status" value="1"><span class="label-text"> ODI</span><br>
-                                                        <input type="radio" name="status" id="status" value="2"><span class="label-text"> T20</span><br>
-                                                        <input type="radio" name="status" id="status" value="3"><span class="label-text"> Test</span>
+                                                        <input type="radio" name="game_sub_type" value="1"><span class="label-text"> ODI</span><br>
+                                                        <input type="radio" name="game_sub_type" value="2"><span class="label-text"> T20</span><br>
+                                                        <input type="radio" name="game_sub_type" value="3"><span class="label-text"> Test</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -888,6 +822,29 @@
 <script type="text/javascript" src="js/plugins/bootstrap-datepicker.min.js"></script>
 
 <script>
+
+    $(document).on('submit','#submitMatch',function(event){
+        event.preventDefault();
+        let url = this.action;
+        let data = $(this).serialize();
+        $.ajax({
+            method:"POST",
+            url: url,
+            data: data,
+            success: function(data){
+                $('#server_message').html(data);
+                setTimeout(() => {
+                    location.reload();
+
+                }, 500);
+            },
+            error: (error) => {
+                $('#server_message').html(error.responseText);
+            }
+        })
+    })
+
+
     $(document).ready(function() {
         var max_fields = 10;
         var add_input_button = $('.add_input_button');
@@ -940,8 +897,3 @@
 
     });
 </script>
-
-
-</body>
-
-</html>
